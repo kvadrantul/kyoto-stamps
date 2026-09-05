@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style><title>Печати Киото — карта госюин и бесплатных штампов</title>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style><title>Печати Киото — карта госюин и бесплатных штампов</title>
 <meta name="description" content="Интерактивная карта: где в Киото ставят печати в блокнот. 71 точка — храмы с рукописными госюин и бесплатные штампы на станциях. Цена, часы окошка, куда идти.">
 <meta name="theme-color" content="#EFF0EA" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#141613" media="(prefers-color-scheme: dark)">
@@ -6,7 +6,14 @@
 <meta property="og:description" content="Где в Киото ставят печати в блокнот: 71 точка с ценами, часами и адресом окошка.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%23C7382B'/%3E%3Ctext x='50' y='50' font-size='62' text-anchor='middle' dominant-baseline='central' fill='white' font-family='serif'%3E%E5%8D%B0%3C/text%3E%3C/svg%3E">
-</head><body>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Печати Киото">
+<meta name="application-name" content="Печати Киото">
+</head><body data-tab="map">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Alegreya+Sans+SC:wght@500;700&display=swap">
@@ -129,14 +136,21 @@ a{color:var(--shu-ink);text-underline-offset:2px}
   font-variant-numeric:tabular-nums;
 }
 
-/* ---------- рабочая область ---------- */
-.workspace{
+/* ---------- оболочка ----------
+   На широком экране это по-прежнему страница: шапка, две колонки, справка внизу.
+   На телефоне те же три куска становятся экранами приложения (см. конец файла). */
+.app{display:flex;flex-direction:column;min-height:100%}
+.panes{
   display:grid;
   grid-template-columns:minmax(300px,382px) 1fr;
+  grid-template-rows:clamp(520px,74vh,820px) auto;
   gap:0;
-  height:clamp(520px,74vh,820px);
-  border-bottom:1px solid var(--line);
 }
+.side{grid-area:1/1/2/2}
+.mapwrap{grid-area:1/2/2/3}
+.guide{grid-area:2/1/3/3;border-top:1px solid var(--line)}
+.tabbar{display:none}
+.mapui.chipbar{display:none}
 .side{
   display:flex;flex-direction:column;min-height:0;
   border-right:1px solid var(--line);
@@ -159,6 +173,12 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .chip.c-goshuin[aria-pressed="true"]{background:var(--shu);border-color:var(--shu);color:#fff}
 .chip.c-free[aria-pressed="true"]{background:var(--ai);border-color:var(--ai);color:#fff}
+.chip.c-goshuin::before,.chip.c-free::before{
+  content:"";display:inline-block;width:8px;height:8px;border-radius:50%;
+  margin-right:5px;background:var(--shu);
+}
+.chip.c-free::before{background:var(--ai)}
+.chip.c-goshuin[aria-pressed="true"]::before,.chip.c-free[aria-pressed="true"]::before{background:#fff}
 
 .list{overflow-y:auto;flex:1;min-height:0;padding-bottom:18px;scrollbar-width:thin}
 .grp{
@@ -295,6 +315,7 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 }
 .card.t-free{border-top-color:var(--ai)}
 .card[hidden]{display:none}
+.card .grab{display:none}
 .card .x{position:absolute;right:7px;top:7px;border:0;background:none;color:var(--ink-3);font-size:19px;line-height:1;padding:4px 6px}
 .card .x:hover{color:var(--ink)}
 .card h3{font-size:20px;line-height:1.15;padding-right:22px}
@@ -326,6 +347,68 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 .card .go{
   display:inline-block;font-size:14px;
   font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.05em;
+}
+
+/* ---------- нижняя навигация (только телефон) ---------- */
+.tabbar{
+  flex:none;z-index:1200;background:var(--raised);
+  border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);
+}
+.tabbar button{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  background:none;border:0;padding:7px 4px 6px;color:var(--ink-3);
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;
+  letter-spacing:.06em;font-size:11.5px;line-height:1;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.tabbar svg{
+  width:23px;height:23px;fill:none;stroke:currentColor;
+  stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;
+}
+.tabbar button[aria-selected="true"]{color:var(--shu)}
+
+/* ---------- «поставить на телефон» ---------- */
+.install{
+  display:flex;align-items:center;gap:10px;flex:none;z-index:1300;
+  padding:9px 12px 10px;background:var(--ink);color:var(--paper);font-size:14px;
+  padding-bottom:calc(10px + env(safe-area-inset-bottom));
+}
+.install .itxt{flex:1;line-height:1.3}
+.ibtn{
+  border:1px solid var(--paper);background:transparent;color:var(--paper);
+  padding:4px 12px 5px;border-radius:100px;font-size:13.5px;white-space:nowrap;
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.05em;
+}
+.ibtn:hover{background:var(--paper);color:var(--ink)}
+.ix{border:0;background:none;color:var(--paper);opacity:.65;font-size:20px;line-height:1;padding:2px 5px}
+.ix:hover{opacity:1}
+.ibtn.big{border-color:var(--shu);color:var(--shu);padding:8px 17px 9px;font-size:15px}
+.ibtn.big:hover{background:var(--shu);color:#fff}
+.installrow{margin:16px 0 0}
+
+/* полоса фильтра поверх карты — на телефоне она же легенда */
+.mapui.chipbar{
+  /* правый край задан явно: у полосы должна быть определённая ширина, иначе
+     кнопки ужимаются и надписи ломаются на два ряда */
+  left:10px;right:112px;top:calc(10px + env(safe-area-inset-top));
+  flex-direction:row;flex-wrap:wrap;align-items:center;gap:5px;
+  pointer-events:none;                       /* пустая часть полосы не отбирает касания у карты */
+}
+.mapui.chipbar>*{pointer-events:none}
+.mapui.chipbar .chip,.mapui.chipbar .mapcount{pointer-events:auto}
+.mapui.chipbar .chip{
+  flex:none;                                 /* кнопка не ужимается: лучше перенести, чем сломать слово */
+  background:color-mix(in srgb,var(--raised) 92%,transparent);
+  box-shadow:var(--shadow);backdrop-filter:blur(3px);
+  font-size:12.5px;padding:3px 8px 4px;
+}
+.mapui.chipbar .chip::before{width:7px;margin-right:4px}
+.mapcount:empty{display:none}
+.mapcount{
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.05em;
+  font-size:12px;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums;
+  background:color-mix(in srgb,var(--raised) 92%,transparent);
+  box-shadow:var(--shadow);border-radius:100px;padding:3px 10px 4px;backdrop-filter:blur(3px);
 }
 
 /* ---------- справочная часть ---------- */
@@ -372,39 +455,80 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 .foot{border-top:1px solid var(--line);margin-top:44px;padding-top:16px;font-size:14px;color:var(--ink-3);max-width:74ch}
 
 @media (max-width:900px){
-  .workspace{grid-template-columns:1fr;height:auto}
-  .mapwrap{height:clamp(360px,58vh,540px);order:-1;border-bottom:1px solid var(--line)}
-  .side{border-right:0}
-  .list{max-height:46vh}
-  .card{left:0;right:0;top:auto;bottom:0;width:100%;max-height:68%;border-radius:0;border-left:0;border-right:0;border-bottom:0}
-  .mapui.zoom{left:auto;right:10px;top:10px;bottom:auto;align-items:flex-end}
-  .legend{
-    font-size:12px;padding:5px 9px 6px;left:10px;top:auto;bottom:23px;right:10px;
-    flex-direction:row;flex-wrap:wrap;gap:3px 12px;
+  /* Телефон: это уже не страница, а приложение.
+     Ничего не прокручивается целиком — экраны переключаются нижней навигацией,
+     а главный из них — карта во весь экран. */
+  html,body{height:100%;overflow:hidden;overscroll-behavior:none}
+  .app{position:fixed;inset:0;min-height:0;background:var(--paper)}
+
+  /* тонкая шапка есть на «списке» и «справке»; на карте её нет вовсе */
+  .top{
+    flex:none;align-items:center;gap:10px;flex-wrap:nowrap;
+    padding:9px 15px 10px;padding-top:calc(9px + env(safe-area-inset-top));
   }
-  .legend b{display:none}
-  .legend .lg{display:none}
-  .legend .sm{display:inline}
-  .card{max-height:60%}
-  .card-open .legend{display:none}
-  .toast{bottom:auto;top:96px}
+  .top h1{font-size:20px;line-height:1.1}
+  .top .lede{display:none}
+  .top .count{display:none}
+  body[data-tab="list"] .top .count{display:block;margin-left:auto}
+  body[data-tab="map"] .top{display:none}
+
+  .panes{display:block;position:relative;flex:1;min-height:0;grid-template-columns:none;grid-template-rows:none}
+  .panes>*{position:absolute;inset:0;display:none}
+  body[data-tab="map"] .mapwrap{display:block}
+  body[data-tab="list"] .side{display:flex}
+  body[data-tab="guide"] .guide{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+
+  .side{border-right:0}
+  .list{max-height:none}
+  .mapwrap{border:0;overflow:hidden}
+  .guide{padding:20px 16px 40px;max-width:none;margin:0;border-top:0}
+
+  /* поверх карты — только нужное в дороге */
+  .mapui.chipbar{display:flex}
+  .mapui.zoom{left:auto;right:10px;bottom:auto;top:calc(10px + env(safe-area-inset-top));align-items:flex-end}
+  #zin,#zout{display:none}
+  .mapui .chips.base .chip[aria-pressed="true"]{display:none}  /* остаётся одна кнопка-переключатель */
+  .chip .lg{display:none}
+  .legend{display:none}                                        /* цвет объясняют сами кнопки фильтра */
+  .toast{bottom:auto;top:calc(60px + env(safe-area-inset-top))}
+
+  /* карточка места — выдвижной лист снизу */
+  .card{
+    left:0;right:0;top:auto;bottom:0;width:100%;max-height:68%;
+    border-radius:15px 15px 0 0;border-left:0;border-right:0;border-bottom:0;
+    padding:6px 16px 20px;
+    box-shadow:0 -4px 12px rgba(0,0,0,.10),0 -18px 44px rgba(0,0,0,.20);
+    animation:sheet .2s ease-out;overscroll-behavior:contain;touch-action:pan-y;
+  }
+  .card .grab{
+    display:block;width:38px;height:4px;border-radius:100px;
+    background:var(--line);margin:5px auto 10px;
+  }
+  .card .x{top:9px;right:8px}
+  @keyframes sheet{from{transform:translateY(26px);opacity:.4}to{transform:none;opacity:1}}
+  @media (prefers-reduced-motion:reduce){.card{animation:none}}
+
+  .tabbar{display:flex}
 }
 </style>
 
+<div class="app" id="app">
 <header class="top">
   <h1><span class="seal">Печати</span> Киото</h1>
   <p class="lede">Где в Киото ставят печати в блокнот: рукописные храмовые госюин и бесплатные штампы на станциях и в музеях. У каждой точки — цена, часы и окошко, куда идти. Кнопка <b>&#8853;</b> на карте показывает, где вы, и пересобирает список от ближних к дальним.</p>
   <p class="count" id="count"></p>
 </header>
 
-<div class="workspace">
+<div class="panes">
   <aside class="side">
     <div class="controls">
       <input class="search" id="q" type="search" placeholder="Поиск: Киёмидзу, Инари, вокзал…" aria-label="Поиск по названию">
-      <div class="chips" id="typeChips" role="group" aria-label="Вид печати">
-        <button class="chip" data-f="type" data-v="all" aria-pressed="true">все</button>
-        <button class="chip c-goshuin" data-f="type" data-v="goshuin" aria-pressed="false">госюин · платно</button>
-        <button class="chip c-free" data-f="type" data-v="free" aria-pressed="false">бесплатно</button>
+      <div id="sideChips">
+        <div class="chips" id="typeChips" role="group" aria-label="Вид печати">
+          <button class="chip" data-f="type" data-v="all" aria-pressed="true">все</button>
+          <button class="chip c-goshuin" data-f="type" data-v="goshuin" aria-pressed="false">госюин<span class="lg"> · платно</span></button>
+          <button class="chip c-free" data-f="type" data-v="free" aria-pressed="false">бесплатно</button>
+        </div>
       </div>
       <div class="chips" id="areaChips" role="group" aria-label="Район"></div>
       <div class="chips sort" id="sortRow" hidden>
@@ -427,6 +551,7 @@ a{color:var(--shu-ink);text-underline-offset:2px}
       <div class="row"><span class="sw b"></span><span class="lg">есть и то, и другое</span><span class="sm">оба</span></div>
       <div class="row"><span class="sw m"></span>вы</div>
     </div>
+    <div class="mapui chipbar" id="mapChips"><span class="mapcount" id="mapCount"></span></div>
     <div class="mapui zoom">
       <div class="chips base" id="baseChips" role="group" aria-label="Вид карты">
         <button class="chip" data-base="plan" aria-pressed="true">карта</button>
@@ -442,9 +567,8 @@ a{color:var(--shu-ink);text-underline-offset:2px}
     <p class="toast" id="toast" role="status" hidden></p>
     <article class="card" id="card" hidden></article>
   </div>
-</div>
 
-<main class="guide">
+  <main class="guide" id="guide">
   <section>
     <p class="eyebrow">что вообще собирают</p>
     <h2>Госюин — не сувенир, а отметка о посещении</h2>
@@ -489,6 +613,18 @@ a{color:var(--shu-ink);text-underline-offset:2px}
   </section>
 
   <section>
+    <p class="eyebrow">на телефоне</p>
+    <h2>Поставить как приложение</h2>
+    <div class="prose">
+      <p>Карту можно положить на экран «Домой» — дальше она открывается <strong>во весь экран, без адресной строки и вкладок</strong>, как обычное приложение. Заодно она начинает работать <strong>без интернета</strong>: страница, все 71 точка и уже просмотренные куски карты остаются в памяти телефона. В чужой стране без связи это важнее всего остального.</p>
+      <p><b>iPhone, Safari:</b> кнопка «Поделиться» внизу экрана → «На экран „Домой“» → «Добавить».</p>
+      <p><b>Android, Chrome:</b> кнопка ниже, либо меню ⋮ → «Установить приложение».</p>
+      <p>Чтобы карта работала в дороге без сети, пролистайте нужные районы заранее, пока есть интернет: что посмотрели — то и сохранилось.</p>
+    </div>
+    <p class="installrow"><button class="ibtn big" id="installGo2" hidden>Установить приложение</button></p>
+  </section>
+
+  <section>
     <p class="eyebrow">взять с собой</p>
     <h2>Перенести все точки в Google Карты или в офлайн-навигатор</h2>
     <div class="prose">
@@ -520,7 +656,30 @@ a{color:var(--shu-ink);text-underline-offset:2px}
   </section>
 
   <p class="foot">Сведения собраны 5 сентября 2026 года по официальным страницам храмов и святилищ, публикациям транспортного управления Киото и отчётам путешественников. Цены, часы работы окошек и состав ралли меняются — перед выходом стоит свериться с сайтом конкретного места. Карта — настоящая: подложка OpenStreetMap, спутниковые снимки Esri. Координаты точек проставлены вручную по адресам храмов; окошко с печатью может стоять в стороне от отметки — в карточке написано, где искать. Местоположение показывается прямо в браузере и никуда не передаётся: страница статическая, сервера у неё нет.</p>
-</main>
+  </main>
+</div>
+
+<div class="install" id="install" hidden>
+  <span class="itxt" id="installTxt"></span>
+  <button class="ibtn" id="installGo" hidden>Установить</button>
+  <button class="ix" id="installX" aria-label="Скрыть подсказку">&times;</button>
+</div>
+
+<nav class="tabbar" id="tabbar" role="tablist" aria-label="Разделы">
+  <button role="tab" data-tab="map" aria-selected="true">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.5s7-6.4 7-11.5a7 7 0 1 0-14 0c0 5.1 7 11.5 7 11.5z"/><circle cx="12" cy="10" r="2.6"/></svg>
+    <span>карта</span>
+  </button>
+  <button role="tab" data-tab="list" aria-selected="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 6.5h15M4.5 12h15M4.5 17.5h15"/></svg>
+    <span>список</span>
+  </button>
+  <button role="tab" data-tab="guide" aria-selected="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 5.6A1.6 1.6 0 0 1 6.1 4H19.5v14.5H6.1a1.6 1.6 0 0 0-1.6 1.6z"/><path d="M8.4 8.6h7.2M8.4 12.2h7.2"/></svg>
+    <span>справка</span>
+  </button>
+</nav>
+</div>
 
 <script>
 "use strict";
@@ -986,11 +1145,11 @@ const ALL_BOUNDS = L.latLngBounds(P.map(p => [p.lat, p.lon]));
 
 function tileFor(kind){
   if (kind === "sat") return L.layerGroup([
-    L.tileLayer(ESRI("World_Imagery"), {maxZoom:19, attribution:"Снимки: Esri, Maxar, Earthstar Geographics"}),
-    L.tileLayer(ESRI("Reference/World_Boundaries_and_Places"), {maxZoom:19, opacity:0.9})
+    L.tileLayer(ESRI("World_Imagery"), {maxZoom:19, crossOrigin:"anonymous", attribution:"Снимки: Esri, Maxar, Earthstar Geographics"}),
+    L.tileLayer(ESRI("Reference/World_Boundaries_and_Places"), {maxZoom:19, crossOrigin:"anonymous", opacity:0.9})
   ]);
   return L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-    {maxZoom:19, attribution:ATTR_OSM});
+    {maxZoom:19, crossOrigin:"anonymous", attribution:ATTR_OSM});
 }
 let curBase = "plan", baseTile = null;
 function setBase(kind){
@@ -1022,16 +1181,30 @@ P.forEach((p, i) => {
   pins.push({m, p, on:false});
 });
 
+function sheetShift(){
+  return (isPhone() && !cardEl.hidden) ? cardEl.offsetHeight / 2 : 0;
+}
 function flyTo(lat, lon, z){
   const zz = Math.max(map.getZoom(), z || 15);
-  if (reduced) map.setView([lat, lon], zz);
-  else map.flyTo([lat, lon], zz, {duration:0.7});
+  const shift = sheetShift();
+  const c = shift ? map.unproject(map.project([lat, lon], zz).add([0, shift]), zz) : L.latLng(lat, lon);
+  if (reduced) map.setView(c, zz);
+  else map.flyTo(c, zz, {duration:0.7});
+}
+/* отметку, выбранную прямо на карте, тоже подтягиваем из-под листа */
+function keepVisible(lat, lon){
+  const shift = sheetShift();
+  if (!shift) return;
+  const pt = map.latLngToContainerPoint([lat, lon]);
+  const edge = mapEl.clientHeight - cardEl.offsetHeight - 24;
+  if (pt.y > edge) map.panBy([0, pt.y - edge + 40], {animate:!reduced});
 }
 
 /* ================= кнопки карты ================= */
 document.getElementById("zin").onclick  = () => map.zoomIn(1);
 document.getElementById("zout").onclick = () => map.zoomOut(1);
-document.getElementById("reset").onclick = () => map.fitBounds(ALL_BOUNDS, {padding:[36,36]});
+const fitAll = () => { map.invalidateSize(); map.fitBounds(ALL_BOUNDS, {padding:[36,36]}); };
+document.getElementById("reset").onclick = fitAll;
 
 /* ================= где я ================= */
 const R = 6371000;
@@ -1102,6 +1275,7 @@ locBtn.onclick = locate;
 const listEl  = document.getElementById("list");
 const cardEl  = document.getElementById("card");
 const countEl = document.getElementById("count");
+const mapCountEl = document.getElementById("mapCount");
 const qEl     = document.getElementById("q");
 let fType = "all", fArea = "all", fQ = "", cur = -1, sortMode = "area";
 const plural = (n,a,b,c) => { const m = n % 100, d = n % 10;
@@ -1174,6 +1348,7 @@ function render(){
   countEl.textContent = shown.length === P.length
     ? `${P.length} ${plural(P.length, "точка", "точки", "точек")} на карте`
     : `${shown.length} ${plural(shown.length, "точка", "точки", "точек")} из ${P.length}`;
+  mapCountEl.textContent = shown.length === P.length ? "" : countEl.textContent;
 
   for (const r of pins){
     const on = passes(r.p);
@@ -1210,6 +1385,7 @@ function render(){
 
 function clearSel(){
   cardEl.hidden = true; cur = -1;
+  cardEl.style.transform = ""; cardEl.style.transition = "";
   document.getElementById("mapwrap").classList.remove("card-open");
   pins.forEach(r => r.m.getElement() && r.m.getElement().querySelector(".mk").classList.remove("sel"));
 }
@@ -1233,6 +1409,7 @@ function select(i, fromMap){
 
   cardEl.className = "card t-" + p.type;
   cardEl.innerHTML =
+    '<span class="grab" aria-hidden="true"></span>' +
     '<button class="x" aria-label="Закрыть">&times;</button>' +
     '<h3></h3>' +
     '<p class="names"><span class="jp"></span> · <span class="rj"></span> · <span class="ar"></span></p>' +
@@ -1269,7 +1446,10 @@ function select(i, fromMap){
   cardEl.scrollTop = 0;
   document.getElementById("mapwrap").classList.add("card-open");
 
-  if (!fromMap) flyTo(p.lat, p.lon, 16);
+  if (!fromMap){
+    if (isPhone()) setTab("map");
+    flyTo(p.lat, p.lon, 16);
+  } else keepVisible(p.lat, p.lon);
   render();
   const li = listEl.querySelector('.item[data-i="' + i + '"]');
   if (li){ li.setAttribute("aria-current", "true"); if (fromMap) li.scrollIntoView({block:"nearest"}); }
@@ -1279,11 +1459,133 @@ document.addEventListener("keydown", ev => {
   if (ev.key === "Escape" && !cardEl.hidden){ clearSel(); render(); }
 });
 
+/* ================= экраны приложения: карта · список · справка ================= */
+const tabbarEl = document.getElementById("tabbar");
+const guideEl   = document.getElementById("guide");
+const phoneMQ   = matchMedia("(max-width:900px)");
+const isPhone   = () => phoneMQ.matches;
+
+/* переключатель вида печати один, но живёт в двух местах:
+   на широком экране — в колонке фильтров, на телефоне — поверх карты,
+   где он заодно объясняет цвет отметок */
+const typeChipsEl = document.getElementById("typeChips");
+const sideChipsEl = document.getElementById("sideChips");
+const mapChipsEl  = document.getElementById("mapChips");
+function placeTypeChips(){
+  const onMap = isPhone() && document.body.dataset.tab === "map";
+  const host = onMap ? mapChipsEl : sideChipsEl;
+  if (typeChipsEl.parentNode !== host) host.prepend(typeChipsEl);
+}
+
+function setTab(name){
+  document.body.dataset.tab = name;
+  placeTypeChips();
+  tabbarEl.querySelectorAll("[data-tab]").forEach(b =>
+    b.setAttribute("aria-selected", b.dataset.tab === name ? "true" : "false"));
+  if (name === "guide") guideEl.scrollTop = 0;
+  if (name === "map") map.invalidateSize();
+}
+tabbarEl.addEventListener("click", ev => {
+  const b = ev.target.closest("[data-tab]");
+  if (b) setTab(b.dataset.tab);
+});
+phoneMQ.addEventListener("change", () => {
+  if (!isPhone()) setTab("map");
+  placeTypeChips();
+  map.invalidateSize();
+});
+
+/* выдвижной лист смахивается вниз — как в любом приложении */
+let dragFrom = null, dragBy = 0;
+cardEl.addEventListener("pointerdown", ev => {
+  if (!isPhone() || ev.button) return;
+  if (!ev.target.closest(".grab, h3, .names, .badges")) return;
+  dragFrom = ev.clientY; dragBy = 0;
+  cardEl.style.transition = "none";
+  try { cardEl.setPointerCapture(ev.pointerId); } catch (e) {}
+});
+cardEl.addEventListener("pointermove", ev => {
+  if (dragFrom === null) return;
+  dragBy = Math.max(0, ev.clientY - dragFrom);
+  cardEl.style.transform = "translateY(" + dragBy + "px)";
+});
+function endDrag(){
+  if (dragFrom === null) return;
+  dragFrom = null;
+  cardEl.style.transition = "transform .18s ease-out";
+  if (dragBy > 80){
+    cardEl.style.transform = "translateY(110%)";
+    setTimeout(() => { clearSel(); render(); }, 170);
+  } else cardEl.style.transform = "";
+}
+cardEl.addEventListener("pointerup", endDrag);
+cardEl.addEventListener("pointercancel", endDrag);
+
+/* ================= ярлык на экране «Домой» ================= */
+const installBar = document.getElementById("install");
+const installTxt = document.getElementById("installTxt");
+const installGo  = document.getElementById("installGo");
+const installGo2 = document.getElementById("installGo2");
+const HIDE_KEY = "kyoto.install.hidden";
+const asApp = matchMedia("(display-mode: standalone)").matches
+  || matchMedia("(display-mode: minimal-ui)").matches
+  || navigator.standalone === true;
+const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+  || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+let installHidden = false;
+try { installHidden = localStorage.getItem(HIDE_KEY) === "1"; } catch (e) {}
+
+let installEv = null;
+addEventListener("beforeinstallprompt", ev => {
+  ev.preventDefault();
+  installEv = ev;
+  installGo.hidden = false;
+  installGo2.hidden = false;
+  if (!asApp && !installHidden){
+    installTxt.textContent = "Поставьте карту на экран «Домой»: откроется во весь экран и будет работать без интернета.";
+    installBar.hidden = false;
+  }
+});
+async function install(){
+  if (!installEv) return;
+  const ev = installEv; installEv = null;
+  installGo.hidden = installGo2.hidden = true;
+  ev.prompt();
+  try { await ev.userChoice; } catch (e) {}
+  installBar.hidden = true;
+}
+installGo.onclick = install;
+installGo2.onclick = install;
+document.getElementById("installX").onclick = () => {
+  installBar.hidden = true;
+  try { localStorage.setItem(HIDE_KEY, "1"); } catch (e) {}
+};
+addEventListener("appinstalled", () => {
+  installBar.hidden = true;
+  installGo.hidden = installGo2.hidden = true;
+});
+/* Safari про установку не сообщает — там подсказываем словами */
+if (iOS && !asApp && !installHidden && isPhone()){
+  installTxt.textContent = "Во весь экран: «Поделиться» → «На экран „Домой“».";
+  installBar.hidden = false;
+}
+
+/* офлайн: страница, точки и уже просмотренные куски карты.
+   isSecureContext, а не проверка «https»: на localhost тоже работает и там же проверяется */
+if ("serviceWorker" in navigator && isSecureContext){
+  const reg = () => navigator.serviceWorker.register("sw.js").catch(() => {});
+  if (document.readyState === "complete") reg(); else addEventListener("load", reg);
+}
+
+/* ================= запуск ================= */
 setSortChips();
+placeTypeChips();
+setTab("map");
 render();
-map.fitBounds(ALL_BOUNDS, {padding:[36,36]});
+fitAll();
+setTimeout(fitAll, 0);   // окно может дорасти уже после запуска
 const start = P.findIndex(p => p.n === "Киёмидзу-дэра");
-if (start >= 0 && innerWidth > 900) select(start, true);
+if (start >= 0 && !isPhone()) select(start, true);
 </script>
 
 </body></html>
