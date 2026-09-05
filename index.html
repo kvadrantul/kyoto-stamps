@@ -459,7 +459,16 @@ a{color:var(--shu-ink);text-underline-offset:2px}
      Ничего не прокручивается целиком — экраны переключаются нижней навигацией,
      а главный из них — карта во весь экран. */
   html,body{height:100%;overflow:hidden;overscroll-behavior:none}
-  .app{position:fixed;inset:0;min-height:0;background:var(--paper)}
+  /* Высота — по видимой части экрана, а не по «бумажной».
+     inset:0 в мобильном браузере меряется от края страницы, а адресная строка
+     то появляется, то прячется — из-за этого нижняя навигация уезжала с низа.
+     --vph ставит скрипт по visualViewport, 100dvh — запасной вариант,
+     100vh — для старых браузеров. */
+  .app{
+    position:fixed;left:0;right:0;top:0;
+    height:100vh;height:100dvh;height:var(--vph,100dvh);
+    min-height:0;background:var(--paper);
+  }
 
   /* тонкая шапка есть на «списке» и «справке»; на карте её нет вовсе */
   .top{
@@ -500,11 +509,30 @@ a{color:var(--shu-ink);text-underline-offset:2px}
     box-shadow:0 -4px 12px rgba(0,0,0,.10),0 -18px 44px rgba(0,0,0,.20);
     animation:sheet .2s ease-out;overscroll-behavior:contain;touch-action:pan-y;
   }
+  /* ручка — настоящая кнопка: касание сворачивает описание, потяг вниз закрывает */
   .card .grab{
-    display:block;width:38px;height:4px;border-radius:100px;
-    background:var(--line);margin:5px auto 10px;
+    display:block;width:100%;height:34px;margin:0 0 2px;padding:0;
+    border:0;background:none;touch-action:none;
+    -webkit-tap-highlight-color:transparent;
   }
-  .card .x{top:9px;right:8px}
+  .card .grab i{
+    display:block;width:46px;height:5px;border-radius:100px;
+    background:var(--ink-3);opacity:.45;margin:13px auto 0;
+    transition:opacity .15s,transform .15s;
+  }
+  .card .grab:active i{opacity:1;transform:scaleX(1.12)}
+  /* крестик — под палец: 44×44 и видимый кружок */
+  .card .x{
+    top:4px;right:6px;width:44px;height:44px;padding:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:26px;color:var(--ink-2);border-radius:50%;
+    background:color-mix(in srgb,var(--paper) 76%,transparent);
+  }
+  .card h3{padding-right:48px}
+  /* свёрнуто: остаются название и метки, карта открыта */
+  .card.mini{max-height:none;overflow:hidden}
+  .card.mini .near,.card.mini .facts,.card.mini .note,.card.mini .acts{display:none}
+  .card.mini .badges{margin-bottom:4px}
   @keyframes sheet{from{transform:translateY(26px);opacity:.4}to{transform:none;opacity:1}}
   @media (prefers-reduced-motion:reduce){.card{animation:none}}
 
@@ -1409,7 +1437,7 @@ function select(i, fromMap){
 
   cardEl.className = "card t-" + p.type;
   cardEl.innerHTML =
-    '<span class="grab" aria-hidden="true"></span>' +
+    '<button class="grab" type="button" aria-label="Свернуть описание" aria-expanded="true"><i></i></button>' +
     '<button class="x" aria-label="Закрыть">&times;</button>' +
     '<h3></h3>' +
     '<p class="names"><span class="jp"></span> · <span class="rj"></span> · <span class="ar"></span></p>' +
@@ -1495,24 +1523,52 @@ phoneMQ.addEventListener("change", () => {
   map.invalidateSize();
 });
 
+/* Лист живёт в двух состояниях: развёрнутый и свёрнутый до названия.
+   Ручка сверху — кнопка: касание сворачивает и разворачивает,
+   потяг вниз закрывает совсем. */
+function setMini(on){
+  cardEl.classList.toggle("mini", !!on);
+  const g = cardEl.querySelector(".grab");
+  if (g){
+    g.setAttribute("aria-expanded", on ? "false" : "true");
+    g.setAttribute("aria-label", on ? "Развернуть описание" : "Свернуть описание");
+  }
+}
+/* по свёрнутому листу можно ткнуть куда угодно — развернётся */
+cardEl.addEventListener("click", ev => {
+  if (!cardEl.classList.contains("mini")) return;
+  if (ev.target.closest(".x, .grab")) return;
+  setMini(false);
+});
+
 /* выдвижной лист смахивается вниз — как в любом приложении */
-let dragFrom = null, dragBy = 0;
+let dragFrom = null, dragBy = 0, onGrab = false, moved = false;
 cardEl.addEventListener("pointerdown", ev => {
   if (!isPhone() || ev.button) return;
   if (!ev.target.closest(".grab, h3, .names, .badges")) return;
-  dragFrom = ev.clientY; dragBy = 0;
+  dragFrom = ev.clientY; dragBy = 0; moved = false;
+  onGrab = !!ev.target.closest(".grab");
   cardEl.style.transition = "none";
   try { cardEl.setPointerCapture(ev.pointerId); } catch (e) {}
 });
 cardEl.addEventListener("pointermove", ev => {
   if (dragFrom === null) return;
   dragBy = Math.max(0, ev.clientY - dragFrom);
+  if (Math.abs(ev.clientY - dragFrom) > 4) moved = true;
   cardEl.style.transform = "translateY(" + dragBy + "px)";
 });
 function endDrag(){
   if (dragFrom === null) return;
   dragFrom = null;
   cardEl.style.transition = "transform .18s ease-out";
+  /* Касание ручки (без движения) — свернуть или развернуть.
+     Обрабатываем здесь, а не событием click: пока держим захват указателя,
+     click приходит на сам лист, и обработчик на ручке до него не доживает. */
+  if (!moved){
+    cardEl.style.transform = "";
+    if (onGrab) setMini(!cardEl.classList.contains("mini"));
+    return;
+  }
   if (dragBy > 80){
     cardEl.style.transform = "translateY(110%)";
     setTimeout(() => { clearSel(); render(); }, 170);
@@ -1576,6 +1632,30 @@ if ("serviceWorker" in navigator && isSecureContext){
   const reg = () => navigator.serviceWorker.register("sw.js").catch(() => {});
   if (document.readyState === "complete") reg(); else addEventListener("load", reg);
 }
+
+/* ================= высота под видимое окно =================
+   Адресная строка мобильного браузера то появляется, то прячется, и высота
+   страницы при этом не совпадает с тем, что человек видит. Берём высоту
+   у самого браузера и обновляем её при каждом изменении. */
+const vview = window.visualViewport;
+let vhTick = 0;
+function applyVH(){
+  vhTick = 0;
+  const h = vview ? vview.height : innerHeight;
+  document.documentElement.style.setProperty("--vph", Math.round(h) + "px");
+  map.invalidateSize();
+}
+function setVH(){ if (!vhTick) vhTick = requestAnimationFrame(applyVH); }
+if (vview){
+  vview.addEventListener("resize", setVH);
+  vview.addEventListener("scroll", setVH);
+}
+addEventListener("resize", setVH);
+addEventListener("orientationchange", () => setTimeout(setVH, 260));
+/* вкладку могли открыть в фоне: кадры там не рисуются, поэтому первый раз считаем сразу */
+addEventListener("pageshow", applyVH);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) applyVH(); });
+applyVH();
 
 /* ================= запуск ================= */
 setSortChips();
