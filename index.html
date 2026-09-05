@@ -1,0 +1,1231 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style><title>Печати Киото — карта госюин и бесплатных штампов</title>
+<meta name="description" content="Интерактивная карта: где в Киото ставят печати в блокнот. 71 точка — храмы с рукописными госюин и бесплатные штампы на станциях. Цена, часы окошка, куда идти.">
+<meta name="theme-color" content="#EFF0EA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141613" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Печати Киото">
+<meta property="og:description" content="Где в Киото ставят печати в блокнот: 71 точка с ценами, часами и адресом окошка.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%23C7382B'/%3E%3Ctext x='50' y='50' font-size='62' text-anchor='middle' dominant-baseline='central' fill='white' font-family='serif'%3E%E5%8D%B0%3C/text%3E%3C/svg%3E">
+</head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Alegreya+Sans+SC:wght@500;700&display=swap">
+<style>
+:root{
+  --paper:#EFF0EA;
+  --raised:#F8F9F4;
+  --raised-2:#FDFDFA;
+  --ink:#191B17;
+  --ink-2:#565950;
+  --ink-3:#83867A;
+  --line:#D5D8CD;
+  --line-soft:#E4E6DD;
+  --shu:#C7382B;
+  --shu-ink:#A32B20;
+  --shu-soft:#F5DED9;
+  --ai:#2A4E7A;
+  --ai-soft:#DCE5F0;
+  --moss:#6F7F5D;
+  --gold:#9A7B22;
+  --map-bg:#F7F7F1;
+  --map-mtn:#CFD6C4;
+  --map-mtn-2:#C2CBB5;
+  --map-water:#A3BED9;
+  --map-rail:#B4B1A6;
+  --map-street:#E3E2D8;
+  --map-park:#DEE4CD;
+  --map-label:#7C8073;
+  --shadow:0 1px 2px rgba(25,27,23,.06), 0 8px 24px rgba(25,27,23,.09);
+  --shadow-lift:0 2px 6px rgba(25,27,23,.10), 0 18px 44px rgba(25,27,23,.16);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#141613;
+    --raised:#1C1F1A;
+    --raised-2:#232720;
+    --ink:#ECEDE4;
+    --ink-2:#A0A396;
+    --ink-3:#7C8073;
+    --line:#2F332B;
+    --line-soft:#262A23;
+    --shu:#E4634E;
+    --shu-ink:#F08A76;
+    --shu-soft:#39221D;
+    --ai:#83A9D6;
+    --ai-soft:#1C2A3A;
+    --moss:#93A47E;
+    --gold:#C9A44A;
+    --map-bg:#1B1F18;
+    --map-mtn:#283021;
+    --map-mtn-2:#31392A;
+    --map-water:#4A7099;
+    --map-rail:#4A5040;
+    --map-street:#2E3427;
+    --map-park:#37402A;
+    --map-label:#8B9179;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.45);
+    --shadow-lift:0 2px 6px rgba(0,0,0,.5), 0 18px 44px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141613;
+  --raised:#1C1F1A;
+  --raised-2:#232720;
+  --ink:#ECEDE4;
+  --ink-2:#A0A396;
+  --ink-3:#7C8073;
+  --line:#2F332B;
+  --line-soft:#262A23;
+  --shu:#E4634E;
+  --shu-ink:#F08A76;
+  --shu-soft:#39221D;
+  --ai:#83A9D6;
+  --ai-soft:#1C2A3A;
+  --moss:#93A47E;
+  --gold:#C9A44A;
+  --map-bg:#1B1F18;
+  --map-mtn:#283021;
+  --map-mtn-2:#31392A;
+  --map-water:#4A7099;
+  --map-rail:#4A5040;
+  --map-street:#2E3427;
+  --map-park:#37402A;
+  --map-label:#8B9179;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.45);
+  --shadow-lift:0 2px 6px rgba(0,0,0,.5), 0 18px 44px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Alegreya Sans","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.jp{font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP","Source Han Serif JP",serif;}
+h1,h2,h3{font-family:"Alegreya",Georgia,serif;font-weight:700;text-wrap:balance;margin:0}
+.sc{font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.06em;text-transform:lowercase}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--shu-ink);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--shu);outline-offset:2px;border-radius:3px}
+
+/* ---------- шапка ---------- */
+.top{
+  display:flex;align-items:baseline;gap:14px 20px;flex-wrap:wrap;
+  padding:16px clamp(14px,3vw,34px) 14px;
+  border-bottom:1px solid var(--line);
+  background:var(--raised);
+}
+.top h1{font-size:clamp(23px,3.2vw,31px);line-height:1.05;letter-spacing:-.01em}
+.top h1 .seal{color:var(--shu)}
+.top .lede{color:var(--ink-2);font-size:15px;max-width:56ch;flex:1 1 320px}
+.top .count{
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;
+  letter-spacing:.06em;color:var(--ink-3);font-size:14px;white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ---------- рабочая область ---------- */
+.workspace{
+  display:grid;
+  grid-template-columns:minmax(300px,382px) 1fr;
+  gap:0;
+  height:clamp(520px,74vh,820px);
+  border-bottom:1px solid var(--line);
+}
+.side{
+  display:flex;flex-direction:column;min-height:0;
+  border-right:1px solid var(--line);
+  background:var(--raised);
+}
+.controls{padding:12px 14px 10px;display:flex;flex-direction:column;gap:9px;border-bottom:1px solid var(--line-soft)}
+.search{
+  width:100%;padding:8px 11px;border:1px solid var(--line);border-radius:2px;
+  background:var(--raised-2);color:var(--ink);font:inherit;font-size:15px;
+}
+.search::placeholder{color:var(--ink-3)}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{
+  border:1px solid var(--line);background:transparent;color:var(--ink-2);
+  padding:3px 9px 4px;border-radius:100px;font-size:13.5px;line-height:1.35;
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.04em;
+  transition:background .12s,color .12s,border-color .12s;
+}
+.chip:hover{border-color:var(--ink-3)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chip.c-goshuin[aria-pressed="true"]{background:var(--shu);border-color:var(--shu);color:#fff}
+.chip.c-free[aria-pressed="true"]{background:var(--ai);border-color:var(--ai);color:#fff}
+
+.list{overflow-y:auto;flex:1;min-height:0;padding-bottom:18px;scrollbar-width:thin}
+.grp{
+  position:sticky;top:0;z-index:2;
+  background:var(--raised);
+  padding:9px 14px 5px;
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;
+  letter-spacing:.09em;font-size:12.5px;color:var(--ink-3);
+  border-bottom:1px solid var(--line-soft);
+}
+.item{
+  display:grid;grid-template-columns:9px 1fr auto;gap:0 10px;align-items:start;
+  width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line-soft);
+  padding:9px 14px 10px;
+}
+.item:hover{background:var(--raised-2)}
+.item[aria-current="true"]{background:var(--shu-soft)}
+.item .dot{width:9px;height:9px;border-radius:50%;margin-top:7px;background:var(--shu)}
+.item.t-free .dot{background:var(--ai)}
+.item.t-both .dot{background:linear-gradient(90deg,var(--shu) 50%,var(--ai) 50%)}
+.item .nm{display:block;font-size:15.5px;line-height:1.25;font-weight:500}
+.item .sub{display:block;font-size:13px;color:var(--ink-3);line-height:1.3;margin-top:1px}
+.item .fee{
+  font-size:12.5px;color:var(--ink-2);white-space:nowrap;margin-top:2px;
+  font-variant-numeric:tabular-nums;
+}
+.item .fee.free{color:var(--ai)}
+.empty{padding:26px 16px;color:var(--ink-3);font-size:14.5px}
+
+/* ---------- карта ---------- */
+.mapwrap{position:relative;min-width:0;background:var(--map-bg);overflow:hidden;touch-action:none}
+#map{display:block;width:100%;height:100%;cursor:grab}
+#map.dragging{cursor:grabbing}
+.mapui{position:absolute;display:flex;gap:5px;flex-direction:column}
+.mapui.zoom{left:12px;bottom:12px}
+.zbtn{
+  width:32px;height:32px;border:1px solid var(--line);background:var(--raised);
+  border-radius:2px;font-size:17px;line-height:1;display:grid;place-items:center;
+  box-shadow:var(--shadow);color:var(--ink-2)
+}
+.zbtn:hover{color:var(--ink);border-color:var(--ink-3)}
+.zbtn.wide{width:auto;padding:0 9px;font-size:13px;font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.05em}
+.legend{
+  position:absolute;left:12px;top:12px;background:var(--raised);
+  background:color-mix(in srgb,var(--raised) 92%,transparent);
+  border:1px solid var(--line);border-radius:2px;padding:8px 11px 9px;box-shadow:var(--shadow);
+  font-size:13px;color:var(--ink-2);display:flex;flex-direction:column;gap:4px;backdrop-filter:blur(3px);
+}
+.legend b{font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;font-weight:700;letter-spacing:.07em;font-size:11.5px;color:var(--ink-3)}
+.legend .row{display:flex;align-items:center;gap:7px}
+.legend .sw{width:10px;height:10px;border-radius:50%;flex:none}
+.sw.g{background:var(--shu)} .sw.f{background:var(--ai)} .sw.b{background:linear-gradient(90deg,var(--shu) 50%,var(--ai) 50%)}
+
+.pin{cursor:pointer}
+.pin circle.core{stroke:var(--map-bg);stroke-width:1.6}
+.pin .halo{fill:none;stroke:var(--shu);stroke-width:1.6;opacity:0}
+.pin.sel .halo{opacity:1;animation:ping 1.6s ease-out infinite}
+@keyframes ping{0%{r:9;opacity:.9}100%{r:21;opacity:0}}
+@media (prefers-reduced-motion:reduce){.pin.sel .halo{animation:none;opacity:.7}}
+.pin:hover circle.core{stroke-width:2.4}
+.maplabel{
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;
+  fill:var(--map-label);letter-spacing:.1em;pointer-events:none;
+}
+.rivlabel{font-family:"Alegreya",Georgia,serif;font-style:italic;fill:var(--map-water);pointer-events:none}
+
+/* ---------- карточка места ---------- */
+.card{
+  position:absolute;right:12px;top:12px;width:min(345px,calc(100% - 24px));
+  max-height:calc(100% - 24px);overflow-y:auto;
+  background:var(--raised-2);border:1px solid var(--line);border-radius:2px;
+  box-shadow:var(--shadow-lift);padding:15px 16px 17px;
+  border-top:3px solid var(--shu);
+}
+.card.t-free{border-top-color:var(--ai)}
+.card[hidden]{display:none}
+.card .x{position:absolute;right:7px;top:7px;border:0;background:none;color:var(--ink-3);font-size:19px;line-height:1;padding:4px 6px}
+.card .x:hover{color:var(--ink)}
+.card h3{font-size:20px;line-height:1.15;padding-right:22px}
+.card .names{color:var(--ink-3);font-size:13.5px;margin-top:2px}
+.card .names .jp{font-size:15px;color:var(--ink-2)}
+.card .badges{display:flex;flex-wrap:wrap;gap:5px;margin:11px 0 12px}
+.badge{
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.05em;
+  font-size:12.5px;padding:2px 8px 3px;border-radius:100px;border:1px solid transparent;
+}
+.badge.pay{background:var(--shu-soft);color:var(--shu-ink);border-color:color-mix(in srgb,var(--shu) 35%,transparent)}
+.badge.free{background:var(--ai-soft);color:var(--ai);border-color:color-mix(in srgb,var(--ai) 35%,transparent)}
+.badge.tag{background:transparent;color:var(--ink-3);border-color:var(--line)}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:7px 12px;font-size:14.5px;margin:0}
+.facts dt{
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.06em;
+  font-size:12.5px;color:var(--ink-3);padding-top:2px;white-space:nowrap;
+}
+.facts dd{margin:0;color:var(--ink)}
+.card .note{
+  margin-top:12px;padding:9px 11px;background:var(--paper);border-left:2px solid var(--gold);
+  font-size:14px;color:var(--ink-2);
+}
+.card .go{
+  display:inline-block;margin-top:13px;font-size:14px;
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.05em;
+}
+
+/* ---------- справочная часть ---------- */
+.guide{padding:clamp(28px,5vw,54px) clamp(16px,4vw,34px) 60px;max-width:1180px;margin:0 auto}
+.guide h2{
+  font-size:clamp(21px,2.6vw,26px);margin-bottom:6px;
+}
+.guide .eyebrow{
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.12em;
+  font-size:12.5px;color:var(--shu);margin-bottom:3px;
+}
+.guide section+section{margin-top:clamp(30px,4.4vw,48px)}
+.prose{max-width:66ch;color:var(--ink-2);font-size:16.5px}
+.prose p{margin:9px 0}
+.prose strong{color:var(--ink);font-weight:700}
+.steps{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:1px;background:var(--line-soft);border-block:1px solid var(--line-soft);max-width:74ch}
+.steps li{background:var(--paper);display:grid;grid-template-columns:2ch 1fr;gap:14px;padding:11px 2px 12px}
+.steps .n{font-family:"Alegreya",Georgia,serif;font-size:19px;color:var(--shu);line-height:1.1}
+.steps b{display:block;font-weight:700;color:var(--ink);font-size:16px}
+.steps span{color:var(--ink-2);font-size:15px}
+.rallies{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:16px}
+.rally{background:var(--raised);border:1px solid var(--line);padding:14px 15px 16px;display:flex;flex-direction:column;gap:6px}
+.rally.live{border-color:var(--shu);box-shadow:inset 3px 0 0 var(--shu)}
+.rally .when{font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.05em;font-size:12.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.rally.live .when{color:var(--shu)}
+.rally h3{font-size:17.5px;line-height:1.2}
+.rally p{margin:0;font-size:14.5px;color:var(--ink-2)}
+.rally .price{margin-top:auto;padding-top:8px;font-size:14px;color:var(--ink);font-variant-numeric:tabular-nums}
+.nolist{margin-top:14px;max-width:74ch;display:grid;gap:9px}
+.nolist div{display:grid;grid-template-columns:auto 1fr;gap:11px;font-size:15.5px;color:var(--ink-2);align-items:baseline}
+.nolist .who{color:var(--ink);font-weight:500;white-space:nowrap}
+.foot{border-top:1px solid var(--line);margin-top:44px;padding-top:16px;font-size:14px;color:var(--ink-3);max-width:74ch}
+
+@media (max-width:900px){
+  .workspace{grid-template-columns:1fr;height:auto}
+  .mapwrap{height:clamp(360px,58vh,540px);order:-1;border-bottom:1px solid var(--line)}
+  .side{border-right:0}
+  .list{max-height:46vh}
+  .card{left:0;right:0;top:auto;bottom:0;width:100%;max-height:68%;border-radius:0;border-left:0;border-right:0;border-bottom:0}
+  .mapui.zoom{left:auto;right:10px;top:10px;bottom:auto;flex-direction:row}
+  .legend{font-size:12px;padding:6px 9px 7px}
+}
+</style>
+
+<header class="top">
+  <h1><span class="seal">Печати</span> Киото</h1>
+  <p class="lede">Где в Киото ставят печати в блокнот: рукописные храмовые госюин и бесплатные штампы на станциях и в музеях. У каждой точки — цена, часы и окошко, куда идти.</p>
+  <p class="count" id="count"></p>
+</header>
+
+<div class="workspace">
+  <aside class="side">
+    <div class="controls">
+      <input class="search" id="q" type="search" placeholder="Поиск: Киёмидзу, Инари, вокзал…" aria-label="Поиск по названию">
+      <div class="chips" id="typeChips" role="group" aria-label="Вид печати">
+        <button class="chip" data-f="type" data-v="all" aria-pressed="true">все</button>
+        <button class="chip c-goshuin" data-f="type" data-v="goshuin" aria-pressed="false">госюин · платно</button>
+        <button class="chip c-free" data-f="type" data-v="free" aria-pressed="false">бесплатно</button>
+      </div>
+      <div class="chips" id="areaChips" role="group" aria-label="Район"></div>
+    </div>
+    <div class="list" id="list"></div>
+  </aside>
+
+  <div class="mapwrap" id="mapwrap">
+    <svg id="map" role="img" aria-label="Схематическая карта котловины Киото с отметками мест, где ставят печати"></svg>
+    <div class="legend">
+      <b>что за отметка</b>
+      <div class="row"><span class="sw g"></span>госюин — пишут от руки, платно</div>
+      <div class="row"><span class="sw f"></span>штамп — ставишь сам, бесплатно</div>
+      <div class="row"><span class="sw b"></span>есть и то, и другое</div>
+    </div>
+    <div class="mapui zoom">
+      <button class="zbtn wide" id="reset" title="Показать весь Киото">весь город</button>
+      <button class="zbtn" id="zin" aria-label="Приблизить">+</button>
+      <button class="zbtn" id="zout" aria-label="Отдалить">−</button>
+    </div>
+    <article class="card" id="card" hidden></article>
+  </div>
+</div>
+
+<main class="guide">
+  <section>
+    <p class="eyebrow">что вообще собирают</p>
+    <h2>Госюин — не сувенир, а отметка о посещении</h2>
+    <div class="prose">
+      <p><b>Госюин</b> (御朱印, «печать красной тушью») — запись, которую монах или служитель делает <strong>от руки при вас</strong>: название храма, имя божества или будды, дата вашего прихода, поверх — красный оттиск печати. Пишут только в специальный блокнот-гармошку <b>госюинтё</b> (御朱印帳) и только после того, как вы поклонились в главном зале. Записная книжка, скетчбук или лист бумаги не подойдут — вежливо откажут.</p>
+      <p>Это не автограф и не входной билет. В блокнот с госюин не просят расписаться артистов, его не носят в сумке вместе с едой и не заполняют «по-быстрому, а помолиться потом» — во многих храмах прямо просят сначала пройти к алтарю.</p>
+      <p>Рядом живёт вторая, совсем другая история: <strong>бесплатные памятные штампы</strong> (記念スタンプ／駅スタンプ). Резиновый штемпель и подушечка стоят на столике на вокзале, в музее, у выхода из замка — берёшь и ставишь сам, никто не смотрит. Их собирают в обычный блокнот, и мешать их с госюин в одной книжке не принято.</p>
+    </div>
+    <ol class="steps">
+      <li><span class="n">1</span><span><b>Купите госюинтё</b>Продаётся почти в каждом крупном храме: 1500–3000 ¥. Красивые — в Киёмидзу-дэра, Ясака, Фусими Инари, Кинкаку-дзи. Первую печать обычно ставят там же, где купили книжку.</span></li>
+      <li><span class="n">2</span><span><b>Возьмите наличные мелочью</b>Карты не принимают почти нигде. Нужны монеты по 100 и 500 ¥: стандартная цена 300 или 500 ¥, сдачу дают неохотно.</span></li>
+      <li><span class="n">3</span><span><b>Сначала поклон, потом окошко</b>Проходите к главному залу, кланяетесь (в святилище — два поклона, два хлопка, поклон), и только затем идёте за печатью.</span></li>
+      <li><span class="n">4</span><span><b>Найдите нужное окошко</b>В храме это 納経所 (нокё-дзё), в святилище — 授与所 (дзюё-дзё), обычно там же, где продают амулеты. Открываете книжку на чистом развороте и подаёте её сами.</span></li>
+      <li><span class="n">5</span><span><b>Заложите время</b>Окошки закрываются раньше самих храмов — как правило в 16:00–17:00, а не в 18:00. В выходные и в сезон клёнов очередь у Киёмидзу и Фусими Инари — 20–40 минут.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <p class="eyebrow">маршруты с призом</p>
+    <h2>Ралли: собери набор — получишь подарок</h2>
+    <div class="prose"><p>Несколько святилищ объединяются и выдают печати одной серии. Обошёл всех — дают сувенир. Это самый простой способ увидеть Киото за пределами туристического кольца.</p></div>
+    <div class="rallies">
+      <div class="rally live">
+        <p class="when">20 марта — 6 сентября 2026 · последние дни</p>
+        <h3>Мечи <span class="jp">京都刀剣御朱印めぐり</span></h3>
+        <p>Четыре святилища, связанные со знаменитыми клинками: Авата, Тоёкуни, Фудзиномори, Кэнкун. 15-й выпуск. В первом дают папку, обошедшим все четыре — сумочку-кошелёк.</p>
+        <p class="price">Печать 500 ¥ в каждом · всего ~2000 ¥</p>
+      </div>
+      <div class="rally">
+        <p class="when">1 января — 15 февраля, ежегодно</p>
+        <h3>Шестнадцать святилищ <span class="jp">京都十六社朱印めぐり</span></h3>
+        <p>Новогодний обход 16 святилищ по всему городу — от Имамия на севере до Нагаока Тэнмангу за городской чертой. Обошедшим всех дают фигурку животного наступившего года. С 2026-го в наборе Сугавара-ин Тэнмангу вместо Има-Кумано.</p>
+        <p class="price">300 ¥ за печать · книжка маршрута 1000 ¥</p>
+      </div>
+      <div class="rally">
+        <p class="when">Зимой, объявляют заранее</p>
+        <h3>Штампы по станциям <span class="jp">京都あちこちスタンプラリー</span></h3>
+        <p>Бесплатное ралли железных дорог: 27 станций JR, Hankyu, Keihan и метро. Печать не бумажная — прикладываешь телефон к плакату с NFC-меткой в приложении WESTER. Разыгрывают сертификаты и обеды. В 2026-м шло с 9 января по 16 марта.</p>
+        <p class="price">Бесплатно · нужен смартфон и приложение</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">чтобы не идти зря</p>
+    <h2>Где печать не поставят</h2>
+    <div class="nolist">
+      <div><span class="who">Ниси Хонган-дзи и Хигаси Хонган-дзи</span><span>Школа Дзёдо-синсю принципиально не выдаёт госюин: по её учению «доказательство посещения» не имеет смысла. Вместо этого у обоих храмов есть бесплатные памятные штампы — их ставят все желающие.</span></div>
+      <div><span class="who">Императорский дворец и вилла Кацура</span><span>Это не храмы, а объекты Управления императорского двора. Печатей нет вовсе.</span></div>
+      <div><span class="who">Маленькие святилища без служителя</span><span>Если у ворот никого нет, печати не будет. Иногда лежат заранее написанные листки (какиоки, 書き置き) с ящиком для денег — их потом вклеивают в блокнот.</span></div>
+      <div><span class="who">Многие храмы — после 16:00</span><span>Территория ещё открыта, окошко уже закрыто. Это самая частая причина уйти без печати.</span></div>
+      <div><span class="who">Сезонные и «ограниченные» варианты</span><span>Печати с цветением сакуры, клёнами или к празднику выдают только в свои недели. В остальное время дадут обычную.</span></div>
+    </div>
+  </section>
+
+  <p class="foot">Сведения собраны 5 сентября 2026 года по официальным страницам храмов и святилищ, публикациям транспортного управления Киото и отчётам путешественников. Цены, часы работы окошек и состав ралли меняются — перед выходом стоит свериться с сайтом конкретного места. Координаты на карте схематичны: карта нарисована как чертёж котловины, а не как спутниковый снимок, поэтому улицы и реки на ней условны. Ссылка «Открыть в картах» у каждой точки ведёт на точные координаты.</p>
+</main>
+
+<script>
+"use strict";
+
+const AREAS = [
+  ["east",  "Хигасияма — восточные горы"],
+  ["center","Центр — Каварамати, Карасума, Нидзё"],
+  ["north", "Север — Кинкаку-дзи, Китано, Камигамо"],
+  ["west",  "Запад — Арасияма и Такао"],
+  ["south", "Юг — вокзал, То-дзи, Фусими"],
+  ["far",   "Дальние — Курама, Охара, Удзи, Дайго"]
+];
+const AREA_SHORT = {east:"Хигасияма",center:"Центр",north:"Север",west:"Запад",south:"Юг",far:"Дальние"};
+
+/* type: goshuin — рукописная печать за деньги; free — штамп бесплатно; both — и то, и другое */
+const P = [
+/* ---------------- Хигасияма ---------------- */
+{n:"Киёмидзу-дэра",jp:"清水寺",rj:"Kiyomizu-dera",lat:34.9948,lon:135.7850,area:"east",type:"goshuin",
+ fee:"300 ¥ за печать",entry:"вход в главный зал 500 ¥, к окошку — бесплатно",hours:"8:00–18:00 (в июле и августе до 18:30)",
+ where:"Нокё-дзё — павильон сразу к востоку от главного зала, за верандой над обрывом",
+ how:"Здесь больше десяти разных печатей: главный зал, Окуноин, Дзуйгу-до, Амида-до, Тайсан-дзи, Дзэнко-дзи-до. Каждая по 300 ¥, называете нужную у окошка. Печать Дзёдзю-ин выдают только весной и осенью, когда открывают сад.",
+ note:"Главная очередь в городе. Утром до 9:00 подходишь без ожидания, к полудню стоят 30–40 минут.",tags:["ЮНЕСКО"]},
+
+{n:"Ясака-дзиндзя",jp:"八坂神社",rj:"Yasaka-jinja",lat:35.0036,lon:135.7785,area:"east",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный, круглосуточно",hours:"окошко 9:00–17:00",
+ where:"Дзюё-дзё справа от главного зала, там же продают амулеты",
+ how:"Кроме основной есть печати нескольких малых святилищ внутри ограды — Утаяма и Экидзин. Продают собственные госюинтё с фонарями Гиона.",
+ note:"Ближайшее к Гиону место: удобно взять первую печать в поездке и сразу купить блокнот.",tags:[]},
+
+{n:"Ясуи Компира-гу",jp:"安井金比羅宮",rj:"Yasui Konpiragu",lat:34.9986,lon:135.7752,area:"east",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный",hours:"окошко 9:00–17:30",
+ where:"Окошко слева от главного зала, у выхода к «камню разрыва связей»",
+ how:"Святилище про разрыв плохих связей и завязывание хороших. Печать выдают обычным порядком; в дни праздников бывает сезонный вариант.",
+ note:"Знаменитый камень, сквозь который пролезают, — во дворе. Очередь к нему длиннее, чем к печати.",tags:[]},
+
+{n:"Кэннин-дзи",jp:"建仁寺",rj:"Kennin-ji",lat:34.9995,lon:135.7742,area:"east",type:"goshuin",
+ fee:"500 ¥",entry:"вход в залы 600 ¥",hours:"10:00–16:30",
+ where:"Приёмная у входа в главные залы, сразу после кассы",
+ how:"Старейший дзэнский храм Киото. Печать пишут прямо при вас; бывает вариант с драконами с потолка Хатто.",
+ note:"Часто выдают заранее написанный лист (какиоки), если каллиграф занят.",tags:[]},
+
+{n:"Кодай-дзи",jp:"高台寺",rj:"Kodai-ji",lat:35.0000,lon:135.7808,area:"east",type:"goshuin",
+ fee:"300 ¥",entry:"вход 600 ¥",hours:"9:00–17:00",
+ where:"Окошко у выхода из сада, рядом с сувенирной лавкой",
+ how:"Основную печать пишут в книжку. Осенью, когда сад подсвечивают вечером, выдают отдельный сезонный вариант.",
+ note:"",tags:[]},
+
+{n:"Тион-ин",jp:"知恩院",rj:"Chion-in",lat:35.0055,lon:135.7825,area:"east",type:"goshuin",
+ fee:"300 ¥",entry:"территория бесплатно, сады 400–500 ¥",hours:"9:00–16:00",
+ where:"Нокё-дзё в правом крыле главного зала Миэй-до",
+ how:"Главный храм школы Дзёдо. Печатей несколько — по главному залу и по паломническому маршруту Хонэн-сёнин.",
+ note:"Огромные ворота Саммон у входа — самые большие деревянные ворота Японии.",tags:[]},
+
+{n:"Сёрэн-ин",jp:"青蓮院門跡",rj:"Shoren-in",lat:35.0072,lon:135.7833,area:"east",type:"goshuin",
+ fee:"500 ¥",entry:"вход 600 ¥",hours:"9:00–16:30",
+ where:"Стойка у входа: книжку оставляют, пока вы обходите сад, и отдают на выходе",
+ how:"Печать с изображением Фудо-мёо — синего Фудо со знаменитой храмовой картины.",
+ note:"",tags:[]},
+
+{n:"Хэйан-дзингу",jp:"平安神宮",rj:"Heian-jingu",lat:35.0160,lon:135.7825,area:"east",type:"goshuin",
+ fee:"300 ¥",entry:"двор бесплатно, сад 600 ¥",hours:"окошко 8:30–17:00",
+ where:"Дзюё-дзё в правой галерее, за огромным двором из белого гравия",
+ how:"Одна простая печать, очередей почти не бывает.",
+ note:"Гигантские красные ворота-тории через дорогу — их видно издалека, но само святилище дальше на север.",tags:[]},
+
+{n:"Нандзэн-дзи",jp:"南禅寺",rj:"Nanzen-ji",lat:35.0114,lon:135.7947,area:"east",type:"goshuin",
+ fee:"300 ¥",entry:"территория бесплатно, залы 600 ¥, ворота 600 ¥",hours:"8:40–17:00 (зимой до 16:30)",
+ where:"Нокё-дзё внутри Ходзё — главных залов с сухим садом",
+ how:"Чтобы получить печать, нужен билет в Ходзё: окошко за турникетом.",
+ note:"Кирпичный акведук Суйрокаку во дворе — бесплатно и без билета.",tags:[]},
+
+{n:"Эйкан-до",jp:"永観堂禅林寺",rj:"Eikan-do",lat:35.0148,lon:135.7952,area:"east",type:"goshuin",
+ fee:"500 ¥",entry:"600 ¥, в сезон клёнов 1000 ¥",hours:"9:00–16:00",
+ where:"Окошко у входа в залы, сразу после того как снимете обувь",
+ how:"Печать с «оглядывающимся Амидой» — статуей, повернувшей голову через плечо.",
+ note:"Лучшие клёны Киото; в ноябре ходят вечерние сеансы, печати тогда не выдают.",tags:[]},
+
+{n:"Гинкаку-дзи",jp:"銀閣寺",rj:"Ginkaku-ji",lat:35.0270,lon:135.7982,area:"east",type:"goshuin",
+ fee:"300 ¥",entry:"500 ¥",hours:"8:30–17:00 (зимой 9:00–16:30)",
+ where:"Нокё-дзё в середине маршрута по саду, у подножия холма",
+ how:"Книжку отдают на входе в сад и забирают на этом же окошке — так не приходится ждать.",
+ note:"",tags:["ЮНЕСКО"]},
+
+{n:"Хонэн-ин",jp:"法然院",rj:"Honen-in",lat:35.0225,lon:135.7952,area:"east",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный",hours:"6:00–16:00",
+ where:"Столик слева от соломенных ворот, у входа в сад",
+ how:"Чаще всего лежит стопка заранее написанных листов и ящик для денег — берёте лист, кладёте деньги.",
+ note:"Тихий храм с земляными холмиками у ворот. Внутренние залы открывают дважды в год.",tags:[]},
+
+{n:"Конкай-Комё-дзи (Куродани)",jp:"金戒光明寺",rj:"Konkai-Komyo-ji",lat:35.0192,lon:135.7869,area:"east",type:"goshuin",
+ fee:"300–500 ¥",entry:"территория бесплатно",hours:"9:00–16:00",
+ where:"Окошко в приёмной справа от главного зала",
+ how:"Обычно есть несколько вариантов, в том числе «афро-Будда» — статуя Годзо Амиды с необычной причёской, местная достопримечательность.",
+ note:"Туристов почти нет, очередей не бывает.",tags:[]},
+
+{n:"Сандзюсанген-до",jp:"三十三間堂",rj:"Sanjusangen-do",lat:34.9878,lon:135.7717,area:"east",type:"goshuin",
+ fee:"300 ¥",entry:"600 ¥",hours:"8:30–17:00 (зимой 9:00–16:00)",
+ where:"Окошко в конце галереи, после тысячи статуй Каннон",
+ how:"Печать 17-го храма паломничества Сайгоку. Книжку принимают только внутри, по билету.",
+ note:"Внутри нельзя фотографировать — печать остаётся единственным материальным следом визита.",tags:[]},
+
+{n:"Тофуку-дзи",jp:"東福寺",rj:"Tofuku-ji",lat:34.9762,lon:135.7742,area:"east",type:"goshuin",
+ fee:"300 ¥",entry:"территория бесплатно, сады 500–1000 ¥",hours:"9:00–16:00",
+ where:"Нокё-дзё рядом с главным залом Хондо",
+ how:"Отдельные печати есть у субхрамов Комё-ин и Рэйун-ин — туда идти со своими 300 ¥.",
+ note:"Мост Цутэн-кё над ущельем клёнов; в ноябре здесь толпа, в остальное время пусто.",tags:[]},
+
+{n:"Окадзаки-дзиндзя",jp:"岡崎神社",rj:"Okazaki-jinja",lat:35.0195,lon:135.7893,area:"east",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Окошко справа от главного зала",
+ how:"Святилище зайцев: печать с отпечатком заячьей лапы. Входит в новогодний обход шестнадцати святилищ.",
+ note:"Приходят за амулетами на зачатие и лёгкие роды; фигурки зайцев по всему двору.",tags:["16 святилищ"]},
+
+{n:"Авата-дзиндзя",jp:"粟田神社",rj:"Awata-jinja",lat:35.0077,lon:135.7830,area:"east",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Окошко у главного зала, на верху лестницы",
+ how:"Участник ралли мечей: печать с именем клинка. Также входит в обход шестнадцати святилищ.",
+ note:"Отсюда исторически выходили путники на дорогу Токайдо — святилище считалось «проводами в путь».",tags:["ралли мечей","16 святилищ"]},
+
+{n:"Кумано-някуодзи",jp:"熊野若王子神社",rj:"Kumano-Nyakuoji",lat:35.0128,lon:135.7972,area:"east",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Маленькое окошко у главного зала",
+ how:"Начало Тропы философа с южного конца. Входит в обход шестнадцати святилищ.",
+ note:"Служитель бывает не всегда — в будни днём вернее.",tags:["16 святилищ"]},
+
+{n:"Киото Кумано-дзиндзя",jp:"京都熊野神社",rj:"Kyoto Kumano-jinja",lat:35.0195,lon:135.7825,area:"east",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный",hours:"9:00–16:00",
+ where:"Окошко слева от входа",
+ how:"Небольшое городское святилище на перекрёстке Марутамати и Хигасиодзи. Входит в обход шестнадцати святилищ.",
+ note:"Рядом знаменитая лавка ячменных моти Ясиро.",tags:["16 святилищ"]},
+
+{n:"Сисэн-до",jp:"詩仙堂",rj:"Shisen-do",lat:35.0433,lon:135.7965,area:"east",type:"goshuin",
+ fee:"300 ¥",entry:"700 ¥",hours:"9:00–16:45",
+ where:"Стойка у входа, где принимают плату",
+ how:"Книжку оставляют при входе и забирают на выходе.",
+ note:"Крошечный сад с бамбуковым отпугивателем оленей; посетителей мало.",tags:[]},
+
+/* ---------------- Центр ---------------- */
+{n:"Роккаку-до",jp:"六角堂 頂法寺",rj:"Rokkaku-do",lat:35.0078,lon:135.7595,area:"center",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный",hours:"8:00–17:00",
+ where:"Окошко справа от шестиугольного зала, во дворе",
+ how:"Печать 18-го храма паломничества Сайгоку. Пишут быстро, очередей нет.",
+ note:"Считается географическим центром старого города; отсюда пошла школа икебаны Икэнобо.",tags:[]},
+
+{n:"Нисики Тэнмангу",jp:"錦天満宮",rj:"Nishiki Tenmangu",lat:35.0050,lon:135.7660,area:"center",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Окошко у главного зала, в глубине двора",
+ how:"Стоит прямо в торце рынка Нисики. Печать обычная, бывают сезонные варианты с цветами сливы.",
+ note:"Ворота святилища буквально встроены в стены двух соседних зданий — рабочая городская странность.",tags:[]},
+
+{n:"Сэймэй-дзиндзя",jp:"晴明神社",rj:"Seimei-jinja",lat:35.0290,lon:135.7482,area:"center",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный",hours:"окошко 9:00–17:00",
+ where:"Дзюё-дзё справа от главного зала",
+ how:"Святилище гадателя Абэ-но Сэймэя. Печать с пятиконечной звездой; бывают ограниченные варианты, о них пишут на сайте.",
+ note:"Популярно у поклонников аниме и книг про оммёдо — по выходным очередь.",tags:[]},
+
+{n:"Замок Нидзё",jp:"元離宮二条城",rj:"Nijo-jo",lat:35.0142,lon:135.7481,area:"center",type:"both",
+ fee:"печать замка 300 ¥ · штамп бесплатно",entry:"вход 1300 ¥ (двор 800 ¥)",hours:"штамп 8:45–16:00, лавка 9:00–17:00",
+ where:"Бесплатный штамп «53 Нидзё-дзё» — в большом зале отдыха (дай-кюкэй-дзё). Печать замка (го-дзёин) — в лавке ассоциации туризма там же",
+ how:"Это не госюин: замок не храм. Го-дзёин — печатный лист с гербом Токугава, продаётся готовым. Бесплатный штамп входит в набор «100 знаменитых замков Японии».",
+ note:"Штамп можно поставить, не покупая билет во дворец: зал отдыха на территории, куда пускают по обычному входному.",tags:["100 замков"]},
+
+{n:"Мибу-дэра",jp:"壬生寺",rj:"Mibu-dera",lat:34.9998,lon:135.7452,area:"center",type:"goshuin",
+ fee:"300 ¥",entry:"двор бесплатно, музей 300 ¥",hours:"8:30–16:30",
+ where:"Окошко в приёмной слева от главного зала",
+ how:"База отряда Синсэнгуми: печати с их знаком «誠». Несколько вариантов, спрашивайте у окошка.",
+ note:"Во дворе могилы бойцов отряда — вход к ним отдельный.",tags:[]},
+
+{n:"Итихимэ-дзиндзя",jp:"市比賣神社",rj:"Ichihime-jinja",lat:34.9950,lon:135.7642,area:"center",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный",hours:"9:00–16:00",
+ where:"Окошко в первом этаже жилого дома — святилище встроено в городскую застройку",
+ how:"Все божества женские; приходят просить о женском здоровье. Входит в обход шестнадцати святилищ.",
+ note:"Окошко закрывается в 16:00 — на час раньше большинства.",tags:["16 святилищ"]},
+
+{n:"Сугавара-ин Тэнмангу",jp:"菅原院天満宮神社",rj:"Sugawara-in Tenmangu",lat:35.0245,lon:135.7580,area:"center",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Окошко у главного зала, напротив западной стены дворцового парка",
+ how:"Место рождения Сугавара-но Митидзанэ, покровителя учащихся. С 2026 года входит в обход шестнадцати святилищ вместо Има-Кумано.",
+ note:"Совсем маленькое, легко пройти мимо: ворота прямо на улице Карасума.",tags:["16 святилищ"]},
+
+{n:"Камигорё-дзиндзя",jp:"御靈神社（上御霊）",rj:"Kamigoryo-jinja",lat:35.0338,lon:135.7607,area:"center",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Окошко справа от главного зала",
+ how:"Успокаивает духов несправедливо погибших. Входит в обход шестнадцати святилищ.",
+ note:"Здесь началась война Онин, спалившая средневековый Киото.",tags:["16 святилищ"]},
+
+{n:"Ниси Хонган-дзи",jp:"西本願寺",rj:"Nishi Hongan-ji",lat:34.9915,lon:135.7513,area:"center",type:"free",
+ fee:"бесплатно",entry:"вход свободный",hours:"5:30–17:00",
+ where:"Столик с памятными штампами у выхода из главного зала Амида-до",
+ how:"Госюин здесь не выдают принципиально: школа Дзёдо-синсю считает отметку о посещении лишней. Есть бесплатный памятный штамп — ставите сами в свой блокнот.",
+ note:"Огромные деревянные залы, объект ЮНЕСКО, вход бесплатный. Ходить можно свободно.",tags:["ЮНЕСКО","госюин нет"]},
+
+{n:"Хигаси Хонган-дзи",jp:"東本願寺",rj:"Higashi Hongan-ji",lat:34.9895,lon:135.7595,area:"center",type:"free",
+ fee:"бесплатно",entry:"вход свободный",hours:"5:50–17:30 (зимой 6:20–16:30)",
+ where:"Стойка с памятными штампами в галерее у выхода",
+ how:"Госюин не выдают по той же причине, что и в Ниси Хонган-дзи. Штамп бесплатный и самообслуживаемый.",
+ note:"Десять минут пешком от вокзала — удобно зайти между поездами.",tags:["госюин нет"]},
+
+{n:"Музей манги",jp:"京都国際マンガミュージアム",rj:"Kyoto Int. Manga Museum",lat:35.0122,lon:135.7594,area:"center",type:"free",
+ fee:"штампы бесплатно",entry:"вход 1200 ¥",hours:"10:30–17:30, среда выходной",
+ where:"Столики со штампами у главной лестницы и в залах",
+ how:"Несколько разных штампов с персонажами; ставите сами. Нужен входной билет.",
+ note:"Здание бывшей школы; 300 тысяч томов манги, часть можно читать на газоне.",tags:[]},
+
+/* ---------------- Север ---------------- */
+{n:"Кинкаку-дзи",jp:"金閣寺 鹿苑寺",rj:"Kinkaku-ji",lat:35.0394,lon:135.7292,area:"north",type:"goshuin",
+ fee:"300 ¥",entry:"500 ¥",hours:"9:00–17:00",
+ where:"Окошко у павильона Фудо-до — в конце маршрута, перед выходом",
+ how:"Печать не на Золотой павильон, а на Фудо-мёо. Проще всего отдать книжку сразу, как дойдёте, и подождать пару минут.",
+ note:"Входной билет здесь сам по себе бумажный талисман — его многие оставляют.",tags:["ЮНЕСКО"]},
+
+{n:"Рёан-дзи",jp:"龍安寺",rj:"Ryoan-ji",lat:35.0345,lon:135.7183,area:"north",type:"goshuin",
+ fee:"300 ¥",entry:"600 ¥",hours:"8:00–17:00 (зимой 8:30–16:30)",
+ where:"Окошко внутри Ходзё, рядом с сухим садом камней",
+ how:"Печать выдают по билету, у выхода из зала с садом.",
+ note:"Пруд перед храмом и чайный домик — тоже по этому же билету.",tags:["ЮНЕСКО"]},
+
+{n:"Нинна-дзи",jp:"仁和寺",rj:"Ninna-ji",lat:35.0309,lon:135.7137,area:"north",type:"goshuin",
+ fee:"300 ¥",entry:"территория бесплатно, дворцовые залы 800 ¥",hours:"9:00–16:30",
+ where:"Нокё-дзё у главного зала Кондо, ближе к пагоде",
+ how:"Печатей несколько: главный зал, Мироку, паломничество Омуро. Территория бесплатная, за печатью билет не нужен.",
+ note:"Низкорослая сакура Омуро цветёт в середине апреля — на две недели позже остального города.",tags:["ЮНЕСКО"]},
+
+{n:"Мёсин-дзи",jp:"妙心寺",rj:"Myoshin-ji",lat:35.0233,lon:135.7203,area:"north",type:"goshuin",
+ fee:"300 ¥",entry:"территория бесплатно, залы с драконом 700 ¥",hours:"9:00–16:00",
+ where:"Приёмная у главных залов; у субхрамов Тайдзо-ин и Кэйсюн-ин свои окошки",
+ how:"Целый квартал из сорока с лишним храмов. Печать главного храма — в центре, отдельные — в каждом открытом субхраме.",
+ note:"Дракон на потолке зала Хатто смотрит на вас из любой точки — на это и приходят.",tags:[]},
+
+{n:"Китано Тэнмангу",jp:"北野天満宮",rj:"Kitano Tenmangu",lat:35.0313,lon:135.7351,area:"north",type:"goshuin",
+ fee:"500 ¥",entry:"двор бесплатно, сливовый сад 1200 ¥",hours:"окошко 9:00–16:30",
+ where:"Дзюё-дзё справа от главного зала",
+ how:"Главное святилище учащихся Японии. Часто выпускают сезонные печати — со сливой в феврале, с клёнами в ноябре.",
+ note:"25-го числа каждого месяца во дворе большая барахолка Тэндзин-сан.",tags:[]},
+
+{n:"Дайтоку-дзи",jp:"大徳寺",rj:"Daitoku-ji",lat:35.0437,lon:135.7458,area:"north",type:"goshuin",
+ fee:"300–500 ¥ в каждом субхраме",entry:"территория бесплатно, каждый субхрам 400–500 ¥",hours:"9:00–16:30",
+ where:"Свои окошки в открытых субхрамах: Дайсэн-ин, Дзуйхо-ин, Рюгэн-ин, Кото-ин",
+ how:"Единой печати у комплекса нет. Идёте в конкретный субхрам, покупаете билет, там же получаете печать.",
+ note:"Дайсэн-ин — самый известный сухой сад; фотографировать внутри запрещено.",tags:[]},
+
+{n:"Кэнкун-дзиндзя",jp:"建勲神社",rj:"Kenkun-jinja",lat:35.0413,lon:135.7500,area:"north",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Окошко у главного зала, на вершине холма Фунаока",
+ how:"Святилище Оды Нобунаги и организатор ралли мечей. Печать с именем клинка Хэйсисиро Садамунэ.",
+ note:"С холма видно весь город и гору Хиэй. Подъём по лестнице минут пять.",tags:["ралли мечей"]},
+
+{n:"Имамия-дзиндзя",jp:"今宮神社",rj:"Imamiya-jinja",lat:35.0464,lon:135.7381,area:"north",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Окошко слева от главного зала",
+ how:"«Святилище золушки» — сюда приходят за удачным замужеством. Входит в обход шестнадцати святилищ.",
+ note:"У восточных ворот две лавки жареных моти абурамоти, спорящих за первенство с XI века. Обе работают.",tags:["16 святилищ"]},
+
+{n:"Вара Тэндзин",jp:"敷地神社（わら天神宮）",rj:"Wara Tenjin",lat:35.0400,lon:135.7275,area:"north",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Окошко у главного зала",
+ how:"Приходят за лёгкими родами: дают соломинку — с узлом к мальчику, без узла к девочке. Входит в обход шестнадцати святилищ.",
+ note:"В пяти минутах от Кинкаку-дзи, но туристов нет вовсе.",tags:["16 святилищ"]},
+
+{n:"Симогамо-дзиндзя",jp:"下鴨神社 賀茂御祖神社",rj:"Shimogamo-jinja",lat:35.0389,lon:135.7727,area:"north",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный, «зал грёз» 500 ¥",hours:"окошко 9:00–17:00",
+ where:"Дзюё-дзё в правой галерее главного двора",
+ how:"Есть отдельная печать святилища красоты Кавай, что у южного входа, — за ней идти туда.",
+ note:"Идти через первобытную рощу Тадасу-но мори — двадцать минут пешком от Демачиянаги.",tags:["ЮНЕСКО"]},
+
+{n:"Камигамо-дзиндзя",jp:"上賀茂神社 賀茂別雷神社",rj:"Kamigamo-jinja",lat:35.0600,lon:135.7527,area:"north",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный, внутренний двор 500 ¥",hours:"окошко 9:00–16:30",
+ where:"Дзюё-дзё справа, за вторыми воротами",
+ how:"Старейшее святилище города. Печать одна, пишут при вас.",
+ note:"Два конуса из белого песка во дворе — модель священной горы. Ручей вдоль домов служителей.",tags:["ЮНЕСКО"]},
+
+/* ---------------- Запад ---------------- */
+{n:"Тэнрю-дзи",jp:"天龍寺",rj:"Tenryu-ji",lat:35.0158,lon:135.6739,area:"west",type:"goshuin",
+ fee:"300 ¥",entry:"сад 500 ¥, залы +300 ¥",hours:"8:30–17:00",
+ where:"Нокё-дзё у входа в залы Кури, слева от кассы",
+ how:"Печать выдают и без билета в залы — окошко до турникета.",
+ note:"Бамбуковая роща Арасиямы начинается прямо от северных ворот храма.",tags:["ЮНЕСКО"]},
+
+{n:"Нономия-дзиндзя",jp:"野宮神社",rj:"Nonomiya-jinja",lat:35.0180,lon:135.6724,area:"west",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Окошко у входа в маленький двор, посреди бамбуковой рощи",
+ how:"Печать чаще всего заранее написанная. Приходят просить о хорошем браке и учёбе.",
+ note:"Ворота из неокорённого дуба — редкая архаичная форма. Очередь к «камню желаний» бывает больше, чем к печати.",tags:[]},
+
+{n:"Мацуо-тайся",jp:"松尾大社",rj:"Matsuo-taisha",lat:34.9998,lon:135.6851,area:"west",type:"goshuin",
+ fee:"500 ¥",entry:"двор бесплатно, сады 500 ¥",hours:"окошко 9:00–16:00",
+ where:"Дзюё-дзё справа от главного зала",
+ how:"Покровитель сакеваров: во дворе стена из бочек, присланных винокурнями со всей страны.",
+ note:"Ходит трамвай Ханкю до одноимённой станции — 200 метров до ворот.",tags:[]},
+
+{n:"Отаги Нэмбуцу-дзи",jp:"愛宕念仏寺",rj:"Otagi Nenbutsu-ji",lat:35.0362,lon:135.6603,area:"west",type:"goshuin",
+ fee:"300 ¥",entry:"500 ¥",hours:"8:00–16:30",
+ where:"То же окошко, где продают билет — при входе",
+ how:"Печать выдают сразу вместе с билетом, не надо искать отдельную стойку.",
+ note:"1200 каменных фигур ракан, вырезанных прихожанами в 1980-х: каждая со своим лицом, есть с фотоаппаратом и с теннисной ракеткой.",tags:[]},
+
+{n:"Дзинго-дзи (Такао)",jp:"神護寺",rj:"Jingo-ji",lat:35.0620,lon:135.6740,area:"west",type:"goshuin",
+ fee:"300 ¥",entry:"1000 ¥",hours:"9:00–16:00",
+ where:"Нокё-дзё у главного зала, на вершине лестницы",
+ how:"От остановки автобуса до ворот — 350 ступеней вверх. Заложите час только на подъём и спуск.",
+ note:"Отсюда бросают глиняные тарелочки какэварадзара в ущелье — на удачу.",tags:[]},
+
+{n:"Кодзан-дзи",jp:"高山寺",rj:"Kozan-ji",lat:35.0592,lon:135.6784,area:"west",type:"goshuin",
+ fee:"300 ¥",entry:"осенью 500 ¥, зал Сэкисуй-ин 1000 ¥",hours:"8:30–17:00",
+ where:"Окошко у зала Сэкисуй-ин",
+ how:"Хранит свиток «Весёлые картинки зверей» — прародителя манги. Оригинал в музее, здесь копия.",
+ note:"В горах Такао, час на автобусе от вокзала. По дороге — Дзинго-дзи и Саймё-дзи, логично объединить.",tags:["ЮНЕСКО"]},
+
+{n:"Сай-ин Касуга",jp:"西院春日神社",rj:"Sai-in Kasuga",lat:35.0074,lon:135.7327,area:"west",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Окошко у главного зала",
+ how:"Приходят просить об исцелении и о безопасной дороге. Входит в обход шестнадцати святилищ.",
+ note:"Прямо у станции Сай-ин линии Ханкю — удобно по пути в Арасияму.",tags:["16 святилищ"]},
+
+{n:"Станция Арасияма (Ранден)",jp:"嵐電嵐山駅",rj:"Randen Arashiyama Stn.",lat:35.0152,lon:135.6786,area:"west",type:"free",
+ fee:"бесплатно",entry:"платформа открытая, билет не нужен",hours:"весь день",
+ where:"Столик со штампом на платформе, рядом с информационной стойкой",
+ how:"Штамп трамвайной линии Кэйфуку. Ставите сами в любой блокнот.",
+ note:"«Лес кимоно» — колонны с тканью — тут же на платформе, вечером с подсветкой.",tags:["станция"]},
+
+{n:"Станция Сага-Арасияма (JR)",jp:"JR嵯峨嵐山駅",rj:"JR Saga-Arashiyama Stn.",lat:35.0186,lon:135.6820,area:"west",type:"free",
+ fee:"бесплатно",entry:"штамп в вестибюле, до турникетов",hours:"весь день",
+ where:"Стойка у выхода, рядом с автоматами",
+ how:"Обычный вокзальный штамп JR West с бамбуковой рощей.",
+ note:"Отсюда же отходит паровозик Сагано Торокко — у его станции свой отдельный штамп.",tags:["станция"]},
+
+/* ---------------- Юг ---------------- */
+{n:"Фусими Инари — главный зал",jp:"伏見稲荷大社 本殿授与所",rj:"Fushimi Inari, main hall",lat:34.9678,lon:135.7726,area:"south",type:"goshuin",
+ fee:"300–500 ¥",entry:"вход свободный, круглосуточно",hours:"окошко 8:30–16:00",
+ where:"Дзюё-дзё справа от главного зала, сразу за большими воротами",
+ how:"Четыре варианта печати. Само святилище открыто всегда, но окошко закрывается в 16:00 — приходить раньше.",
+ note:"Одна из трёх точек с печатями внутри комплекса. Каждая пишет своё — собирают все три.",tags:[]},
+
+{n:"Фусими Инари — Окуся",jp:"伏見稲荷大社 奥社奉拝所",rj:"Fushimi Inari, Okusha",lat:34.9673,lon:135.7787,area:"south",type:"goshuin",
+ fee:"300–500 ¥",entry:"вход свободный",hours:"окошко 8:30–16:00",
+ where:"В конце первого коридора из тысячи ворот, 10 минут вверх от главного зала",
+ how:"Пять вариантов печати — больше, чем внизу. Здесь же камни «омокару» — загадываешь и поднимаешь.",
+ note:"Дальше начинается подъём на гору. Большинство разворачивается именно тут.",tags:[]},
+
+{n:"Фусими Инари — Годзэндани",jp:"伏見稲荷大社 御膳谷奉拝所",rj:"Fushimi Inari, Gozendani",lat:34.9640,lon:135.7830,area:"south",type:"goshuin",
+ fee:"300–500 ¥",entry:"вход свободный",hours:"окошко 9:00–15:45",
+ where:"На середине горы Инари, за перекрёстком Ёцуцудзи",
+ how:"Три варианта, включая печать с датой по старому счёту. Подъём от подножия — около часа.",
+ note:"Закрывается раньше всех — в 15:45. Кто вышел после обеда, туда не успевает.",tags:[]},
+
+{n:"То-дзи",jp:"東寺 教王護国寺",rj:"To-ji",lat:34.9812,lon:135.7477,area:"south",type:"goshuin",
+ fee:"300 ¥",entry:"двор бесплатно, залы 500–1000 ¥",hours:"8:00–17:00",
+ where:"Нокё-дзё в северо-восточном углу двора, у сувенирной лавки",
+ how:"Печатей больше десяти — по разным залам и паломническим маршрутам. Выдают и без билета в залы.",
+ note:"21-го числа каждого месяца — большая барахолка Кобо-сан по всему двору.",tags:["ЮНЕСКО"]},
+
+{n:"Тоёкуни-дзиндзя",jp:"豊国神社",rj:"Toyokuni-jinja",lat:34.9917,lon:135.7719,area:"south",type:"goshuin",
+ fee:"500 ¥",entry:"двор бесплатно, сокровищница 500 ¥",hours:"9:00–17:00",
+ where:"Окошко справа от резных ворот Карамон",
+ how:"Святилище Тоётоми Хидэёси. Участник ралли мечей и обхода шестнадцати святилищ — печати разные, называйте нужную.",
+ note:"Ворота Карамон перенесены из замка Фусими — национальное сокровище, стоит просто так во дворе.",tags:["ралли мечей","16 святилищ"]},
+
+{n:"Рокусоно-о-дзиндзя",jp:"六孫王神社",rj:"Rokusonno-jinja",lat:34.9830,lon:135.7420,area:"south",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Окошко у главного зала",
+ how:"Родовое святилище клана Минамото. Входит в обход шестнадцати святилищ.",
+ note:"Пять минут пешком от То-дзи — логично объединить.",tags:["16 святилищ"]},
+
+{n:"Китидзё-ин Тэнмангу",jp:"吉祥院天満宮",rj:"Kisshoin Tenmangu",lat:34.9700,lon:135.7345,area:"south",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный",hours:"9:00–17:00",
+ where:"Окошко у главного зала",
+ how:"Ещё одно святилище Митидзанэ, на месте усадьбы его рода. Входит в обход шестнадцати святилищ.",
+ note:"Совсем не туристическое место, служитель бывает не весь день.",tags:["16 святилищ"]},
+
+{n:"Фудзиномори-дзиндзя",jp:"藤森神社",rj:"Fujinomori-jinja",lat:34.9497,lon:135.7700,area:"south",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный, сад гортензий 300 ¥",hours:"9:00–17:00",
+ where:"Дзюё-дзё слева от главного зала",
+ how:"Святилище лошадей и скачек. Участник ралли мечей и обхода шестнадцати святилищ.",
+ note:"В июне цветут 3500 кустов гортензий — главный местный повод приехать.",tags:["ралли мечей","16 святилищ"]},
+
+{n:"Гокономия-дзиндзя",jp:"御香宮神社",rj:"Gokonomiya-jinja",lat:34.9330,lon:135.7625,area:"south",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный, сад 200 ¥",hours:"9:00–16:00",
+ where:"Окошко справа от главного зала",
+ how:"Источник целебной воды, одна из ста лучших вод Японии — можно набрать бесплатно. Входит в обход шестнадцати святилищ.",
+ note:"В квартале винокурен Фусими: рядом музей сакэ Гэккэйкан.",tags:["16 святилищ"]},
+
+{n:"Вокзал Киото",jp:"JR京都駅",rj:"Kyoto Station",lat:34.9858,lon:135.7588,area:"south",type:"free",
+ fee:"бесплатно",entry:"штамп у турникетов, билет не нужен",hours:"весь день",
+ where:"Стойка со штампом у центрального выхода, рядом с турникетами линии Токайдо",
+ how:"Вокзальный штамп JR West с пятиярусной пагодой То-дзи. Ставите сами. На вокзале несколько разных — у линий Синкансэн и Нара свои.",
+ note:"На 2-м этаже туристический центр «Кёнаби»: карты на русском нет, но на английском есть.",tags:["станция"]},
+
+{n:"Станция Инари (JR)",jp:"JR稲荷駅",rj:"JR Inari Stn.",lat:34.9670,lon:135.7724,area:"south",type:"free",
+ fee:"бесплатно",entry:"штамп в вестибюле",hours:"весь день",
+ where:"Стойка у выхода, прямо напротив ворот Фусими Инари",
+ how:"Штамп с лисой и воротами. Удобно поставить, пока ждёте обратный поезд.",
+ note:"Станция стоит буквально у входа в святилище — переходить дорогу не нужно.",tags:["станция"]},
+
+{n:"Киотская башня",jp:"京都タワー",rj:"Kyoto Tower",lat:34.9876,lon:135.7592,area:"south",type:"free",
+ fee:"бесплатно",entry:"смотровая площадка 900 ¥, холл бесплатно",hours:"10:00–21:00",
+ where:"Штампы на смотровой площадке и в торговом этаже под башней",
+ how:"Обычные памятные штампы, самообслуживание.",
+ note:"Со смотровой видно весь город и, в ясный день, гору Хиэй.",tags:[]},
+
+/* ---------------- Дальние ---------------- */
+{n:"Курама-дэра",jp:"鞍馬寺",rj:"Kurama-dera",lat:35.1189,lon:135.7714,area:"far",type:"goshuin",
+ fee:"300 ¥",entry:"пожертвование 500 ¥, канатка 200 ¥",hours:"9:00–16:15",
+ where:"Нокё-дзё у главного зала, на верхней площадке",
+ how:"От станции наверх — либо пешком 30 минут, либо на маленькой канатной дороге. Печатей несколько, включая перевал Осуги.",
+ note:"Отсюда можно перейти горой в Кибунэ за час — тропа с корнями деревьев, обувь нужна нормальная.",tags:[]},
+
+{n:"Кифунэ-дзиндзя",jp:"貴船神社",rj:"Kifune-jinja",lat:35.1215,lon:135.7626,area:"far",type:"goshuin",
+ fee:"500 ¥",entry:"вход свободный",hours:"окошко 9:00–16:30",
+ where:"Дзюё-дзё у главного зала, на верху лестницы с красными фонарями",
+ how:"Печатей две: главный зал и «внутреннее» святилище Окуномия выше по ручью.",
+ note:"Знаменитая лестница с фонарями — та самая открыточная. Здесь же гадание на бумажках, которые проявляются в воде.",tags:[]},
+
+{n:"Станция Курама (Эйдзан)",jp:"叡山電鉄 鞍馬駅",rj:"Kurama Stn.",lat:35.1157,lon:135.7699,area:"far",type:"free",
+ fee:"бесплатно",entry:"штамп в вестибюле",hours:"весь день",
+ where:"Стойка у выхода, под огромной маской тэнгу",
+ how:"Штамп горной линии Эйдзан. Ставите сами.",
+ note:"Красная маска длинноносого тэнгу у станции — местный символ и точка сбора.",tags:["станция"]},
+
+{n:"Сандзэн-ин (Охара)",jp:"三千院",rj:"Sanzen-in",lat:35.1197,lon:135.8345,area:"far",type:"goshuin",
+ fee:"300 ¥",entry:"700 ¥",hours:"9:00–17:00 (зимой до 16:30)",
+ where:"Окошко в залах, у выхода в моховой сад",
+ how:"Печать пишут по билету, внутри. Есть вариант с фигурками варабэ-дзидзо.",
+ note:"Час на автобусе от вокзала. Деревня Охара в горах — заметно холоднее города.",tags:[]},
+
+{n:"Мансю-ин",jp:"曼殊院門跡",rj:"Manshu-in",lat:35.0508,lon:135.8013,area:"far",type:"goshuin",
+ fee:"500 ¥",entry:"600 ¥",hours:"9:00–17:00",
+ where:"Стойка у входа, где принимают плату",
+ how:"Печать с Фудо-мёо. Книжку оставляют на входе.",
+ note:"Далеко от остановки, подъём в гору минут двадцать. Зато пусто даже в ноябре.",tags:[]},
+
+{n:"Дайго-дзи",jp:"醍醐寺",rj:"Daigo-ji",lat:34.9510,lon:135.8195,area:"far",type:"goshuin",
+ fee:"300 ¥",entry:"нижний храм 1000 ¥, верхний бесплатно",hours:"9:00–17:00 (зимой до 16:30)",
+ where:"Нокё-дзё у зала Кондо в нижнем храме Симо-Дайго",
+ how:"У верхнего храма Ками-Дайго на горе своё окошко — подъём пешком около часа, там печати другие.",
+ note:"Пятиярусная пагода 951 года — старейшее здание Киото. Знаменитое ханами Хидэёси было здесь.",tags:["ЮНЕСКО"]},
+
+{n:"Бёдо-ин (Удзи)",jp:"平等院",rj:"Byodo-in",lat:34.8895,lon:135.8077,area:"far",type:"goshuin",
+ fee:"300 ¥",entry:"700 ¥, музей +600 ¥, зал Феникса +300 ¥",hours:"9:00–17:00",
+ where:"Окошко у выхода из музея Хосёкан",
+ how:"Печать с именем Амида-нёрай. В зал Феникса пускают сеансами по 50 человек — билет берут сразу на входе.",
+ note:"Тот самый храм с монеты в 10 иен. Полчаса на поезде от вокзала Киото.",tags:["ЮНЕСКО"]},
+
+{n:"Удзигами-дзиндзя",jp:"宇治上神社",rj:"Ujigami-jinja",lat:34.8918,lon:135.8112,area:"far",type:"goshuin",
+ fee:"300 ¥",entry:"вход свободный",hours:"9:00–16:30",
+ where:"Окошко у главного зала",
+ how:"Печать простая; бывают сезонные варианты с кроликами — символом Удзи.",
+ note:"Старейшее сохранившееся здание святилища в Японии, около 1060 года. Через реку от Бёдо-ин, десять минут пешком.",tags:["ЮНЕСКО"]}
+];
+
+/* ================= география котловины ================= */
+const BOUNDS = {s:34.872, n:35.140, w:135.612, e:135.858};
+const MTN = [
+  /* Хигасияма — восточная гряда */
+  [[35.140,135.858],[35.140,135.812],[35.100,135.806],[35.062,135.802],[35.030,135.798],[35.000,135.792],[34.978,135.797],[34.952,135.808],[34.930,135.822],[34.900,135.832],[34.872,135.846],[34.872,135.858]],
+  /* Китаяма — северная гряда */
+  [[35.140,135.612],[35.140,135.858],[35.104,135.806],[35.090,135.788],[35.074,135.772],[35.066,135.748],[35.062,135.722],[35.068,135.692],[35.078,135.658],[35.090,135.612]],
+  /* Нисияма — западная гряда */
+  [[35.096,135.612],[35.062,135.640],[35.044,135.656],[35.028,135.662],[35.012,135.666],[34.996,135.660],[34.978,135.654],[34.950,135.650],[34.918,135.646],[34.872,135.640],[34.872,135.612]]
+];
+const RIVERS = [
+  {name:"Камо", pts:[[35.092,135.758],[35.070,135.752],[35.050,135.760],[35.036,135.768],[35.030,135.771],[35.012,135.772],[34.998,135.771],[34.985,135.766],[34.966,135.756],[34.940,135.749],[34.916,135.746],[34.897,135.740]], w:2.4, label:[34.972,135.752]},
+  {name:"Такано", pts:[[35.124,135.836],[35.098,135.812],[35.072,135.796],[35.050,135.782],[35.030,135.771]], w:1.7},
+  {name:"Кацура", pts:[[35.048,135.664],[35.030,135.668],[35.013,135.676],[34.996,135.690],[34.976,135.706],[34.950,135.716],[34.920,135.727],[34.897,135.740],[34.882,135.752]], w:2.4, label:[34.996,135.686]},
+  {name:"Удзи", pts:[[34.898,135.836],[34.892,135.812],[34.888,135.792],[34.884,135.768],[34.882,135.752]], w:2.0}
+];
+const RAIL = [
+  [[34.9985,135.858],[34.9930,135.8150],[34.9880,135.7800],[34.9858,135.7588],[34.9800,135.7350],[34.9700,135.7000],[34.9540,135.6650]],
+  [[34.9858,135.7588],[34.9765,135.7735],[34.9670,135.7724],[34.9490,135.7690],[34.9330,135.7690],[34.9270,135.7930],[34.8910,135.8010]],
+  [[34.9858,135.7588],[34.9900,135.7480],[35.0000,135.7420],[35.0110,135.7418],[35.0180,135.7320],[35.0190,135.7000],[35.0186,135.6820],[35.0200,135.6480]],
+  [[35.0620,135.7550],[35.0470,135.7590],[35.0300,135.7595],[35.0110,135.7593],[34.9858,135.7588],[34.9500,135.7530],[34.9330,135.7500]],
+  [[35.0100,135.7180],[35.0140,135.7500],[35.0110,135.7593],[35.0090,135.7730],[35.0110,135.7810],[35.0090,135.7880],[34.9930,135.8150],[34.9270,135.7930]],
+  [[35.0300,135.7727],[35.0180,135.7720],[35.0090,135.7730],[35.0035,135.7720],[34.9960,135.7690],[34.9880,135.7680],[34.9765,135.7735],[34.9670,135.7690],[34.9330,135.7625]],
+  [[35.0037,135.7690],[35.0037,135.7593],[35.0035,135.7460],[35.0037,135.7325],[34.9820,135.7010],[34.9250,135.6900]],
+  [[35.0035,135.7460],[35.0090,135.7180],[35.0152,135.6786]],
+  [[35.0300,135.7727],[35.0530,135.7830],[35.0800,135.7720],[35.1080,135.7660],[35.1157,135.7699]]
+];
+const NS = [135.7320,135.7395,135.7480,135.7590,135.7690,135.7780];
+const EW = [35.0430,35.0295,35.0185,35.0110,35.0037,34.9955,34.9880,34.9765];
+const PARKS = [
+  {n:"Госё", box:[35.0195,135.7565,35.0325,135.7660]},
+  {n:"", box:[35.0122,135.7452,35.0166,135.7532]}
+];
+const LABELS = [
+  {t:"Китаяма", lat:35.104, lon:135.700, s:15, a:"middle"},
+  {t:"Хигасияма", lat:35.052, lon:135.822, s:15, a:"middle"},
+  {t:"Нисияма", lat:34.960, lon:135.646, s:15, a:"middle"},
+  {t:"Курама", lat:35.126, lon:135.766, s:11, a:"middle"},
+  {t:"Охара", lat:35.128, lon:135.836, s:11, a:"middle"},
+  {t:"Такао", lat:35.068, lon:135.664, s:11, a:"middle"},
+  {t:"Арасияма", lat:35.024, lon:135.668, s:11, a:"middle"},
+  {t:"Гион", lat:35.0035, lon:135.7810, s:11, a:"start"},
+  {t:"Вокзал Киото", lat:34.9832, lon:135.7588, s:11, a:"middle"},
+  {t:"Фусими", lat:34.940, lon:135.772, s:11, a:"start"},
+  {t:"Удзи", lat:34.884, lon:135.806, s:11, a:"middle"},
+  {t:"Дайго", lat:34.948, lon:135.830, s:11, a:"start"},
+  {t:"Госё", lat:35.0262, lon:135.7612, s:9.5, a:"middle"},
+  {t:"Нидзё", lat:35.0144, lon:135.7492, s:9.5, a:"middle"}
+];
+
+/* ================= проекция ================= */
+const W = 1000;
+const mercY = lat => Math.log(Math.tan(Math.PI/4 + lat*Math.PI/360));
+const myN = mercY(BOUNDS.n), myS = mercY(BOUNDS.s);
+const dLonRad = (BOUNDS.e - BOUNDS.w) * Math.PI/180;
+const H = W * (myN - myS) / dLonRad;
+const px = lon => (lon - BOUNDS.w) / (BOUNDS.e - BOUNDS.w) * W;
+const py = lat => (myN - mercY(lat)) / (myN - myS) * H;
+const pt = (lat,lon) => px(lon).toFixed(1) + "," + py(lat).toFixed(1);
+const poly = a => a.map(p => pt(p[0],p[1])).join(" ");
+
+/* ================= отрисовка карты ================= */
+const SVGNS = "http://www.w3.org/2000/svg";
+const map = document.getElementById("map");
+let vbx = 0, vby = 0, vbw = W, vbh = H;
+function fitViewBox(){
+  const r = map.getBoundingClientRect();
+  if (!r.width || !r.height) return;
+  const ar = r.width / r.height;
+  if (ar > W/H){ vbh = H; vbw = H*ar; } else { vbw = W; vbh = W/ar; }
+  vbx = (W - vbw)/2; vby = (H - vbh)/2;
+  map.setAttribute("viewBox", `${vbx.toFixed(1)} ${vby.toFixed(1)} ${vbw.toFixed(1)} ${vbh.toFixed(1)}`);
+}
+fitViewBox();
+
+function el(tag, attrs, parent){
+  const e = document.createElementNS(SVGNS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+const scene = el("g", {id:"scene"}, map);
+const geo   = el("g", {id:"geo"}, scene);
+const gLbl  = el("g", {id:"labels"}, scene);
+const gPin  = el("g", {id:"pins"}, scene);
+
+el("rect", {x:-W,y:-H,width:3*W,height:3*H,fill:"var(--map-bg)"}, geo);
+MTN.forEach((m,i) => el("polygon", {points:poly(m), fill:i===1?"var(--map-mtn-2)":"var(--map-mtn)"}, geo));
+
+/* улицы-сетка старого города */
+const grid = el("g", {stroke:"var(--map-street)","stroke-width":1,fill:"none","vector-effect":"non-scaling-stroke"}, geo);
+NS.forEach(lon => el("line", {x1:px(lon),y1:py(35.049),x2:px(lon),y2:py(34.972)}, grid));
+EW.forEach(lat => el("line", {x1:px(135.724),y1:py(lat),x2:px(135.784),y2:py(lat)}, grid));
+
+PARKS.forEach(p => {
+  const [s,w,n,e] = p.box;
+  el("rect", {x:px(w), y:py(n), width:px(e)-px(w), height:py(s)-py(n), fill:"var(--map-park)"}, geo);
+});
+
+/* железные дороги */
+const rail = el("g", {stroke:"var(--map-rail)","stroke-width":1.2,fill:"none","stroke-dasharray":"5 4","stroke-linecap":"round","stroke-linejoin":"round","vector-effect":"non-scaling-stroke"}, geo);
+RAIL.forEach(r => el("polyline", {points:poly(r)}, rail));
+
+/* реки */
+RIVERS.forEach(r => el("polyline", {
+  points:poly(r.pts), fill:"none", stroke:"var(--map-water)", "stroke-width":r.w,
+  "stroke-linecap":"round", "stroke-linejoin":"round", "vector-effect":"non-scaling-stroke"
+}, geo));
+
+/* подписи мест — не масштабируются вместе с картой */
+const scalables = [];
+LABELS.forEach(L => {
+  const g = el("g", {}, gLbl);
+  const t = el("text", {class:"maplabel","font-size":L.s,"text-anchor":L.a, x:0, y:0}, g);
+  t.textContent = L.t;
+  scalables.push({g, x:px(L.lon), y:py(L.lat)});
+});
+RIVERS.filter(r=>r.label).forEach(r => {
+  const g = el("g", {}, gLbl);
+  const t = el("text", {class:"rivlabel","font-size":11,"text-anchor":"end", x:0, y:0}, g);
+  t.textContent = "р. " + r.name;
+  scalables.push({g, x:px(r.label[1]), y:py(r.label[0])});
+});
+
+/* отметки */
+const COLOR = {goshuin:"var(--shu)", free:"var(--ai)", both:"var(--shu)"};
+const pins = [];
+P.forEach((p, i) => {
+  p.i = i;
+  const g = el("g", {class:"pin", tabindex:"0", role:"button"}, gPin);
+  g.setAttribute("aria-label", p.n);
+  el("circle", {class:"halo", cx:0, cy:0, r:8}, g);
+  if (p.type === "both"){
+    el("path", {d:"M0,-6.2 A6.2,6.2 0 0,0 0,6.2 Z", fill:"var(--shu)", stroke:"var(--map-bg)","stroke-width":1.6}, g);
+    el("path", {class:"core2", d:"M0,-6.2 A6.2,6.2 0 0,1 0,6.2 Z", fill:"var(--ai)", stroke:"var(--map-bg)","stroke-width":1.6}, g);
+    el("circle", {class:"core", cx:0, cy:0, r:6.2, fill:"none", stroke:"var(--map-bg)","stroke-width":1.6}, g);
+  } else {
+    el("circle", {class:"core", cx:0, cy:0, r:6.2, fill:COLOR[p.type]}, g);
+  }
+  const rec = {g, x:px(p.lon), y:py(p.lat), p};
+  pins.push(rec); scalables.push(rec);
+  g.addEventListener("click", () => select(i, true));
+  g.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); select(i, true);} });
+});
+
+/* ================= масштаб и перетаскивание ================= */
+let k = 1, tx = 0, ty = 0;
+const KMIN = 0.85, KMAX = 9;
+function apply(){
+  scene.setAttribute("transform", `translate(${tx.toFixed(2)},${ty.toFixed(2)}) scale(${k.toFixed(4)})`);
+  const inv = (1/k).toFixed(4);
+  for (const s of scalables) s.g.setAttribute("transform", `translate(${s.x.toFixed(1)},${s.y.toFixed(1)}) scale(${inv})`);
+}
+function clampT(){
+  const cx = tx + k*W/2, cy = ty + k*H/2;
+  const lo = 0.12, hi = 0.88;
+  const minx = vbx + vbw*lo, maxx = vbx + vbw*hi;
+  const miny = vby + vbh*lo, maxy = vby + vbh*hi;
+  if (cx < minx) tx += minx - cx; else if (cx > maxx) tx += maxx - cx;
+  if (cy < miny) ty += miny - cy; else if (cy > maxy) ty += maxy - cy;
+}
+function zoomAt(cx, cy, nk){
+  nk = Math.max(KMIN, Math.min(KMAX, nk));
+  tx = cx - (cx - tx) * (nk/k);
+  ty = cy - (cy - ty) * (nk/k);
+  k = nk; clampT(); apply();
+}
+function toScene(clientX, clientY){
+  const r = map.getBoundingClientRect();
+  const sc = r.width / vbw;
+  return {x: vbx + (clientX - r.left)/sc, y: vby + (clientY - r.top)/sc};
+}
+map.addEventListener("wheel", ev => {
+  ev.preventDefault();
+  const s = toScene(ev.clientX, ev.clientY);
+  zoomAt(s.x, s.y, k * Math.pow(1.0016, -ev.deltaY));
+}, {passive:false});
+
+const active = new Map();
+let last = null, pinchD = 0;
+map.addEventListener("pointerdown", ev => {
+  map.setPointerCapture(ev.pointerId);
+  active.set(ev.pointerId, {x:ev.clientX, y:ev.clientY});
+  if (active.size === 1){ last = toScene(ev.clientX, ev.clientY); map.classList.add("dragging"); }
+  else if (active.size === 2){ const [a,b] = [...active.values()]; pinchD = Math.hypot(a.x-b.x, a.y-b.y); }
+});
+map.addEventListener("pointermove", ev => {
+  if (!active.has(ev.pointerId)) return;
+  active.set(ev.pointerId, {x:ev.clientX, y:ev.clientY});
+  if (active.size === 2){
+    const [a,b] = [...active.values()];
+    const d = Math.hypot(a.x-b.x, a.y-b.y);
+    if (pinchD > 0){
+      const c = toScene((a.x+b.x)/2, (a.y+b.y)/2);
+      zoomAt(c.x, c.y, k * (d/pinchD));
+    }
+    pinchD = d; return;
+  }
+  if (!last) return;
+  const s = toScene(ev.clientX, ev.clientY);
+  tx += (s.x - last.x) * k; ty += (s.y - last.y) * k;
+  clampT(); apply();
+  last = toScene(ev.clientX, ev.clientY);
+});
+function up(ev){
+  active.delete(ev.pointerId);
+  if (active.size < 2) pinchD = 0;
+  if (active.size === 0){ last = null; map.classList.remove("dragging"); }
+}
+map.addEventListener("pointerup", up);
+map.addEventListener("pointercancel", up);
+
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let anim = 0;
+function flyTo(lat, lon, nk){
+  cancelAnimationFrame(anim);
+  const tk = Math.max(KMIN, Math.min(KMAX, nk));
+  const gx = px(lon), gy = py(lat);
+  const dst = {k:tk, tx:(vbx + vbw/2) - gx*tk, ty:(vby + vbh/2) - gy*tk};
+  if (reduced){ k = dst.k; tx = dst.tx; ty = dst.ty; clampT(); apply(); return; }
+  const src = {k, tx, ty}, t0 = performance.now(), dur = 520;
+  (function step(now){
+    const u = Math.min(1, (now - t0)/dur), e = 1 - Math.pow(1-u, 3);
+    k = src.k + (dst.k - src.k)*e;
+    tx = src.tx + (dst.tx - src.tx)*e;
+    ty = src.ty + (dst.ty - src.ty)*e;
+    clampT(); apply();
+    if (u < 1) anim = requestAnimationFrame(step);
+  })(t0);
+}
+const cxv = () => vbx + vbw/2, cyv = () => vby + vbh/2;
+document.getElementById("zin").onclick  = () => zoomAt(cxv(), cyv(), k*1.5);
+document.getElementById("zout").onclick = () => zoomAt(cxv(), cyv(), k/1.5);
+document.getElementById("reset").onclick = () => { k=1; tx=0; ty=0; apply(); };
+let rsz;
+addEventListener("resize", () => { clearTimeout(rsz); rsz = setTimeout(() => { fitViewBox(); clampT(); apply(); }, 120); });
+apply();
+
+/* ================= список, фильтры, карточка ================= */
+const listEl  = document.getElementById("list");
+const cardEl  = document.getElementById("card");
+const countEl = document.getElementById("count");
+const qEl     = document.getElementById("q");
+let fType = "all", fArea = "all", fQ = "", cur = -1;
+const plural = (n,a,b,c) => { const m = n % 100, d = n % 10;
+  if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; };
+
+const areaChips = document.getElementById("areaChips");
+[["all","весь город"], ...AREAS.map(a => [a[0], AREA_SHORT[a[0]].toLowerCase()])].forEach(([v,label]) => {
+  const b = document.createElement("button");
+  b.className = "chip"; b.dataset.v = v; b.textContent = label;
+  b.setAttribute("aria-pressed", v === "all" ? "true" : "false");
+  b.onclick = () => {
+    fArea = v;
+    [...areaChips.children].forEach(c => c.setAttribute("aria-pressed", c.dataset.v === v ? "true" : "false"));
+    render();
+  };
+  areaChips.appendChild(b);
+});
+document.getElementById("typeChips").addEventListener("click", ev => {
+  const b = ev.target.closest(".chip"); if (!b) return;
+  fType = b.dataset.v;
+  [...b.parentNode.children].forEach(c => c.setAttribute("aria-pressed", c === b ? "true" : "false"));
+  render();
+});
+qEl.addEventListener("input", () => { fQ = qEl.value.trim().toLowerCase(); render(); });
+
+const matchType = p => fType === "all" || p.type === fType || p.type === "both";
+function passes(p){
+  if (!matchType(p)) return false;
+  if (fArea !== "all" && p.area !== fArea) return false;
+  if (fQ){
+    const hay = (p.n + " " + p.rj + " " + p.jp + " " + p.tags.join(" ") + " " + AREA_SHORT[p.area]).toLowerCase();
+    if (!hay.includes(fQ)) return false;
+  }
+  return true;
+}
+
+function feeLine(p){ return p.type === "free" ? "бесплатно" : p.fee; }
+
+function render(){
+  const shown = P.filter(passes);
+  countEl.textContent = shown.length === P.length
+    ? `${P.length} ${plural(P.length, "точка", "точки", "точек")} на карте`
+    : `${shown.length} ${plural(shown.length, "точка", "точки", "точек")} из ${P.length}`;
+
+  for (const r of pins){
+    const on = passes(r.p);
+    r.g.style.display = on ? "" : "none";
+  }
+
+  listEl.textContent = "";
+  if (!shown.length){
+    const d = document.createElement("p");
+    d.className = "empty";
+    d.textContent = "Ничего не нашлось. Попробуйте другое написание или снимите фильтр.";
+    listEl.appendChild(d);
+    return;
+  }
+  for (const [key, title] of AREAS){
+    const grp = shown.filter(p => p.area === key);
+    if (!grp.length) continue;
+    const h = document.createElement("div");
+    h.className = "grp"; h.textContent = title;
+    listEl.appendChild(h);
+    for (const p of grp){
+      const b = document.createElement("button");
+      b.className = "item t-" + p.type;
+      b.setAttribute("aria-current", p.i === cur ? "true" : "false");
+      b.innerHTML =
+        '<span class="dot"></span>' +
+        '<span><span class="nm"></span><span class="sub"></span></span>' +
+        '<span class="fee' + (p.type === "free" ? " free" : "") + '"></span>';
+      b.querySelector(".nm").textContent = p.n;
+      b.querySelector(".sub").innerHTML = '<span class="jp"></span>';
+      b.querySelector(".sub .jp").textContent = p.jp;
+      b.querySelector(".fee").textContent = feeLine(p);
+      b.onclick = () => select(p.i, false);
+      listEl.appendChild(b);
+    }
+  }
+}
+
+function select(i, fromMap){
+  cur = i;
+  const p = P[i];
+  pins.forEach(r => r.g.classList.toggle("sel", r.p.i === i));
+  [...listEl.querySelectorAll(".item")].forEach(b => b.setAttribute("aria-current", "false"));
+
+  const tags = [];
+  if (p.type === "free") tags.push('<span class="badge free">бесплатно · сам</span>');
+  else tags.push('<span class="badge pay">' + p.fee + '</span>');
+  if (p.type === "both") tags.push('<span class="badge free">и бесплатный штамп</span>');
+  p.tags.forEach(t => tags.push('<span class="badge tag">' + t + '</span>'));
+
+  cardEl.className = "card t-" + p.type;
+  cardEl.innerHTML =
+    '<button class="x" aria-label="Закрыть">&times;</button>' +
+    '<h3></h3>' +
+    '<p class="names"><span class="jp"></span> · <span class="rj"></span> · <span class="ar"></span></p>' +
+    '<div class="badges">' + tags.join("") + '</div>' +
+    '<dl class="facts">' +
+      '<dt>куда идти</dt><dd class="d-where"></dd>' +
+      '<dt>часы</dt><dd class="d-hours"></dd>' +
+      '<dt>вход</dt><dd class="d-entry"></dd>' +
+      '<dt>условия</dt><dd class="d-how"></dd>' +
+    '</dl>' +
+    (p.note ? '<p class="note"></p>' : '') +
+    '<a class="go" target="_blank" rel="noopener">Открыть в картах &rarr;</a>';
+
+  cardEl.querySelector("h3").textContent = p.n;
+  cardEl.querySelector(".names .jp").textContent = p.jp;
+  cardEl.querySelector(".names .rj").textContent = p.rj;
+  cardEl.querySelector(".names .ar").textContent = AREA_SHORT[p.area];
+  cardEl.querySelector(".d-where").textContent = p.where;
+  cardEl.querySelector(".d-hours").textContent = p.hours;
+  cardEl.querySelector(".d-entry").textContent = p.entry;
+  cardEl.querySelector(".d-how").textContent = p.how;
+  if (p.note) cardEl.querySelector(".note").textContent = p.note;
+  const a = cardEl.querySelector(".go");
+  a.href = "https://www.google.com/maps/search/?api=1&query=" + p.lat + "," + p.lon;
+  cardEl.querySelector(".x").onclick = () => { cardEl.hidden = true; cur = -1; pins.forEach(r => r.g.classList.remove("sel")); render(); };
+  cardEl.hidden = false;
+  cardEl.scrollTop = 0;
+
+  if (!fromMap) flyTo(p.lat, p.lon, Math.max(k, 3.4));
+  render();
+  const li = [...listEl.querySelectorAll(".item")].find(b => b.querySelector(".nm").textContent === p.n);
+  if (li){ li.setAttribute("aria-current", "true"); if (fromMap) li.scrollIntoView({block:"nearest"}); }
+}
+
+document.addEventListener("keydown", ev => {
+  if (ev.key === "Escape" && !cardEl.hidden){ cardEl.hidden = true; cur = -1; pins.forEach(r => r.g.classList.remove("sel")); render(); }
+});
+
+render();
+const start = P.findIndex(p => p.n === "Киёмидзу-дэра");
+if (start >= 0) select(start, true);
+</script>
+
+</body></html>
