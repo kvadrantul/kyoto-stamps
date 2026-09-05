@@ -10,6 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Alegreya+Sans+SC:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
 :root{
   --paper:#EFF0EA;
@@ -184,14 +186,44 @@ a{color:var(--shu-ink);text-underline-offset:2px}
   font-variant-numeric:tabular-nums;
 }
 .item .fee.free{color:var(--ai)}
+.item .right{display:flex;flex-direction:column;align-items:flex-end;gap:1px}
+.item .km{font-size:12px;color:var(--ink-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.chips.sort{align-items:center;gap:7px}
+.sortlbl{
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.08em;
+  font-size:11.5px;color:var(--ink-3);
+}
+.chips.sort #sortChips{display:flex;gap:5px}
 .empty{padding:26px 16px;color:var(--ink-3);font-size:14.5px}
 
 /* ---------- карта ---------- */
-.mapwrap{position:relative;min-width:0;background:var(--map-bg);overflow:hidden;touch-action:none}
-#map{display:block;width:100%;height:100%;cursor:grab}
-#map.dragging{cursor:grabbing}
-.mapui{position:absolute;display:flex;gap:5px;flex-direction:column}
-.mapui.zoom{left:12px;bottom:12px}
+.mapwrap{position:relative;min-width:0;background:var(--map-bg);overflow:hidden}
+#map{position:absolute;inset:0;width:100%;height:100%;background:var(--map-bg);z-index:0}
+.leaflet-container{font:inherit;font-size:14px;background:var(--map-bg)}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) #map:not(.on-sat) .leaflet-tile-pane{
+    filter:invert(1) hue-rotate(180deg) brightness(.94) contrast(.92) saturate(.8);
+  }
+}
+:root[data-theme="dark"] #map:not(.on-sat) .leaflet-tile-pane{
+  filter:invert(1) hue-rotate(180deg) brightness(.94) contrast(.92) saturate(.8);
+}
+.leaflet-control-attribution{
+  background:color-mix(in srgb,var(--raised) 88%,transparent)!important;
+  color:var(--ink-3)!important;font-size:10.5px;padding:1px 6px;
+}
+.leaflet-control-attribution a{color:var(--ink-2)!important}
+.mapui{position:absolute;z-index:900;display:flex;gap:5px;flex-direction:column;align-items:flex-start}
+.mapui.zoom{left:12px;bottom:24px}
+.mapui .row{display:flex;gap:5px}
+.mapui .chips.base{gap:4px}
+.mapui .chips.base .chip{
+  background:color-mix(in srgb,var(--raised) 92%,transparent);
+  box-shadow:var(--shadow);border-radius:2px;backdrop-filter:blur(3px);
+}
+.mapui .chips.base .chip[aria-pressed="true"]{
+  background:var(--ink);border-color:var(--ink);color:var(--paper);
+}
 .zbtn{
   width:32px;height:32px;border:1px solid var(--line);background:var(--raised);
   border-radius:2px;font-size:17px;line-height:1;display:grid;place-items:center;
@@ -199,8 +231,22 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 }
 .zbtn:hover{color:var(--ink);border-color:var(--ink-3)}
 .zbtn.wide{width:auto;padding:0 9px;font-size:13px;font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.05em}
+#loc .crosshair{
+  width:15px;height:15px;border:2px solid currentColor;border-radius:50%;position:relative;display:block;
+}
+#loc .crosshair::before,#loc .crosshair::after{content:"";position:absolute;background:currentColor}
+#loc .crosshair::before{left:50%;top:-5px;width:1.5px;height:19px;margin-left:-.75px}
+#loc .crosshair::after{top:50%;left:-5px;height:1.5px;width:19px;margin-top:-.75px}
+#loc.on{color:#1A73E8;border-color:#1A73E8}
+#loc.busy .crosshair{animation:spin 1.1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toast{
+  position:absolute;left:50%;transform:translateX(-50%);bottom:12px;z-index:1100;margin:0;
+  max-width:min(420px,calc(100% - 24px));background:var(--ink);color:var(--paper);
+  padding:8px 13px;border-radius:2px;font-size:14px;box-shadow:var(--shadow-lift);
+}
 .legend{
-  position:absolute;left:12px;top:12px;background:var(--raised);
+  position:absolute;z-index:900;left:12px;top:12px;background:var(--raised);
   background:color-mix(in srgb,var(--raised) 92%,transparent);
   border:1px solid var(--line);border-radius:2px;padding:8px 11px 9px;box-shadow:var(--shadow);
   font-size:13px;color:var(--ink-2);display:flex;flex-direction:column;gap:4px;backdrop-filter:blur(3px);
@@ -208,24 +254,40 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 .legend b{font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;font-weight:700;letter-spacing:.07em;font-size:11.5px;color:var(--ink-3)}
 .legend .row{display:flex;align-items:center;gap:7px}
 .legend .sw{width:10px;height:10px;border-radius:50%;flex:none}
+.legend .sm{display:none}
 .sw.g{background:var(--shu)} .sw.f{background:var(--ai)} .sw.b{background:linear-gradient(90deg,var(--shu) 50%,var(--ai) 50%)}
+.sw.m{background:#1A73E8;box-shadow:0 0 0 1.5px #fff}
 
-.pin{cursor:pointer}
-.pin circle.core{stroke:var(--map-bg);stroke-width:1.6}
-.pin .halo{fill:none;stroke:var(--shu);stroke-width:1.6;opacity:0}
-.pin.sel .halo{opacity:1;animation:ping 1.6s ease-out infinite}
-@keyframes ping{0%{r:9;opacity:.9}100%{r:21;opacity:0}}
-@media (prefers-reduced-motion:reduce){.pin.sel .halo{animation:none;opacity:.7}}
-.pin:hover circle.core{stroke-width:2.4}
-.maplabel{
-  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;
-  fill:var(--map-label);letter-spacing:.1em;pointer-events:none;
+/* отметки на карте */
+.mkw{cursor:pointer}
+.mk{
+  display:block;width:16px;height:16px;margin:1px;border-radius:50%;
+  background:var(--shu);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.45);position:relative;
 }
-.rivlabel{font-family:"Alegreya",Georgia,serif;font-style:italic;fill:var(--map-water);pointer-events:none}
+.mk.t-free{background:var(--ai)}
+.mk.t-both{background:linear-gradient(90deg,var(--shu) 50%,var(--ai) 50%)}
+.mkw:hover .mk{transform:scale(1.15)}
+.mk.sel::after{
+  content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--shu);
+  animation:ping 1.6s ease-out infinite;
+}
+.mk.t-free.sel::after{border-color:var(--ai)}
+@keyframes ping{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.8);opacity:0}}
+@media (prefers-reduced-motion:reduce){.mk.sel::after{animation:none;opacity:.8;transform:scale(1.6)}}
+.mktip{
+  background:var(--raised-2);color:var(--ink);border:1px solid var(--line);border-radius:2px;
+  box-shadow:var(--shadow);font-size:13.5px;padding:2px 7px 3px;
+}
+.mktip::before{border-top-color:var(--line)}
+.me{
+  display:block;width:15px;height:15px;margin:1.5px;border-radius:50%;background:#1A73E8;
+  border:2.5px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.25),0 1px 4px rgba(0,0,0,.45);
+}
+.mering{fill:#1A73E8;fill-opacity:.12;stroke:#1A73E8;stroke-opacity:.4;stroke-width:1}
 
 /* ---------- карточка места ---------- */
 .card{
-  position:absolute;right:12px;top:12px;width:min(345px,calc(100% - 24px));
+  position:absolute;z-index:1000;right:12px;top:12px;width:min(345px,calc(100% - 24px));
   max-height:calc(100% - 24px);overflow-y:auto;
   background:var(--raised-2);border:1px solid var(--line);border-radius:2px;
   box-shadow:var(--shadow-lift);padding:15px 16px 17px;
@@ -256,8 +318,13 @@ a{color:var(--shu-ink);text-underline-offset:2px}
   margin-top:12px;padding:9px 11px;background:var(--paper);border-left:2px solid var(--gold);
   font-size:14px;color:var(--ink-2);
 }
+.card .near{
+  margin:0 0 11px;font-size:14px;color:var(--ink-2);
+}
+.card .near b{color:var(--ink);font-variant-numeric:tabular-nums}
+.card .acts{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:13px}
 .card .go{
-  display:inline-block;margin-top:13px;font-size:14px;
+  display:inline-block;font-size:14px;
   font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.05em;
 }
 
@@ -290,6 +357,18 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 .nolist{margin-top:14px;max-width:74ch;display:grid;gap:9px}
 .nolist div{display:grid;grid-template-columns:auto 1fr;gap:11px;font-size:15.5px;color:var(--ink-2);align-items:baseline}
 .nolist .who{color:var(--ink);font-weight:500;white-space:nowrap}
+.dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:16px;max-width:900px}
+.dlcard{
+  display:flex;flex-direction:column;gap:6px;
+  background:var(--raised);border:1px solid var(--line);padding:14px 15px 16px;
+  border-left:3px solid var(--shu);
+}
+.dlname{
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.05em;
+  font-size:15.5px;text-decoration:none;
+}
+.dlname:hover{text-decoration:underline}
+.dlcard>span{font-size:14.5px;color:var(--ink-2)}
 .foot{border-top:1px solid var(--line);margin-top:44px;padding-top:16px;font-size:14px;color:var(--ink-3);max-width:74ch}
 
 @media (max-width:900px){
@@ -298,14 +377,23 @@ a{color:var(--shu-ink);text-underline-offset:2px}
   .side{border-right:0}
   .list{max-height:46vh}
   .card{left:0;right:0;top:auto;bottom:0;width:100%;max-height:68%;border-radius:0;border-left:0;border-right:0;border-bottom:0}
-  .mapui.zoom{left:auto;right:10px;top:10px;bottom:auto;flex-direction:row}
-  .legend{font-size:12px;padding:6px 9px 7px}
+  .mapui.zoom{left:auto;right:10px;top:10px;bottom:auto;align-items:flex-end}
+  .legend{
+    font-size:12px;padding:5px 9px 6px;left:10px;top:auto;bottom:23px;right:10px;
+    flex-direction:row;flex-wrap:wrap;gap:3px 12px;
+  }
+  .legend b{display:none}
+  .legend .lg{display:none}
+  .legend .sm{display:inline}
+  .card{max-height:60%}
+  .card-open .legend{display:none}
+  .toast{bottom:auto;top:96px}
 }
 </style>
 
 <header class="top">
   <h1><span class="seal">Печати</span> Киото</h1>
-  <p class="lede">Где в Киото ставят печати в блокнот: рукописные храмовые госюин и бесплатные штампы на станциях и в музеях. У каждой точки — цена, часы и окошко, куда идти.</p>
+  <p class="lede">Где в Киото ставят печати в блокнот: рукописные храмовые госюин и бесплатные штампы на станциях и в музеях. У каждой точки — цена, часы и окошко, куда идти. Кнопка <b>&#8853;</b> на карте показывает, где вы, и пересобирает список от ближних к дальним.</p>
   <p class="count" id="count"></p>
 </header>
 
@@ -319,23 +407,39 @@ a{color:var(--shu-ink);text-underline-offset:2px}
         <button class="chip c-free" data-f="type" data-v="free" aria-pressed="false">бесплатно</button>
       </div>
       <div class="chips" id="areaChips" role="group" aria-label="Район"></div>
+      <div class="chips sort" id="sortRow" hidden>
+        <span class="sortlbl">порядок</span>
+        <span id="sortChips" role="group" aria-label="Порядок списка">
+          <button class="chip" data-s="near" aria-pressed="true">ближайшие</button>
+          <button class="chip" data-s="area" aria-pressed="false">по районам</button>
+        </span>
+      </div>
     </div>
     <div class="list" id="list"></div>
   </aside>
 
   <div class="mapwrap" id="mapwrap">
-    <svg id="map" role="img" aria-label="Схематическая карта котловины Киото с отметками мест, где ставят печати"></svg>
+    <div id="map" role="application" aria-label="Карта Киото с отметками мест, где ставят печати"></div>
     <div class="legend">
       <b>что за отметка</b>
-      <div class="row"><span class="sw g"></span>госюин — пишут от руки, платно</div>
-      <div class="row"><span class="sw f"></span>штамп — ставишь сам, бесплатно</div>
-      <div class="row"><span class="sw b"></span>есть и то, и другое</div>
+      <div class="row"><span class="sw g"></span><span class="lg">госюин — пишут от руки, платно</span><span class="sm">платно</span></div>
+      <div class="row"><span class="sw f"></span><span class="lg">штамп — ставишь сам, бесплатно</span><span class="sm">бесплатно</span></div>
+      <div class="row"><span class="sw b"></span><span class="lg">есть и то, и другое</span><span class="sm">оба</span></div>
+      <div class="row"><span class="sw m"></span>вы</div>
     </div>
     <div class="mapui zoom">
-      <button class="zbtn wide" id="reset" title="Показать весь Киото">весь город</button>
-      <button class="zbtn" id="zin" aria-label="Приблизить">+</button>
-      <button class="zbtn" id="zout" aria-label="Отдалить">−</button>
+      <div class="chips base" id="baseChips" role="group" aria-label="Вид карты">
+        <button class="chip" data-base="plan" aria-pressed="true">карта</button>
+        <button class="chip" data-base="sat" aria-pressed="false">спутник</button>
+      </div>
+      <div class="row">
+        <button class="zbtn wide" id="reset" title="Показать весь Киото">весь город</button>
+        <button class="zbtn" id="loc" aria-label="Показать, где я" title="Показать, где я"><span class="crosshair"></span></button>
+        <button class="zbtn" id="zin" aria-label="Приблизить">+</button>
+        <button class="zbtn" id="zout" aria-label="Отдалить">−</button>
+      </div>
     </div>
+    <p class="toast" id="toast" role="status" hidden></p>
     <article class="card" id="card" hidden></article>
   </div>
 </div>
@@ -385,6 +489,25 @@ a{color:var(--shu-ink);text-underline-offset:2px}
   </section>
 
   <section>
+    <p class="eyebrow">взять с собой</p>
+    <h2>Перенести все точки в Google Карты или в офлайн-навигатор</h2>
+    <div class="prose">
+      <p>Карта на этой странице работает и в дороге, но иногда удобнее, чтобы точки лежали в привычном навигаторе — вместе с маршрутами, метро и офлайн-режимом. Для этого рядом лежат два файла со всеми 71 отметкой: у каждой в описании цена, часы окошка и что делать.</p>
+    </div>
+    <div class="dl">
+      <div class="dlcard">
+        <a class="dlname" href="kyoto-stamps.kml" download>Скачать kyoto-stamps.kml &darr;</a>
+        <span>Для <b>Google Моих карт</b>. Откройте <a href="https://www.google.com/mymaps" target="_blank" rel="noopener">google.com/mymaps</a> → «Создать карту» → «Импорт» → выберите файл. Карта появится в приложении Google Карты: «Сохранённые» → «Карты». Точки лягут двумя слоями: платные госюин и бесплатные штампы.</span>
+      </div>
+      <div class="dlcard">
+        <a class="dlname" href="kyoto-stamps.gpx" download>Скачать kyoto-stamps.gpx &darr;</a>
+        <span>Для офлайн-навигаторов — Organic Maps, OsmAnd, Maps.me. Открывается прямо на телефоне: скачали файл, выбрали «Открыть в…». Работает без интернета, что в поездке важнее всего.</span>
+      </div>
+    </div>
+    <div class="prose"><p>Одну точку можно открыть и без файлов: в карточке места есть «Открыть в Google Картах» и «Маршрут пешком» — второй считает дорогу от вас, если разрешить странице определять местоположение.</p></div>
+  </section>
+
+  <section>
     <p class="eyebrow">чтобы не идти зря</p>
     <h2>Где печать не поставят</h2>
     <div class="nolist">
@@ -396,7 +519,7 @@ a{color:var(--shu-ink);text-underline-offset:2px}
     </div>
   </section>
 
-  <p class="foot">Сведения собраны 5 сентября 2026 года по официальным страницам храмов и святилищ, публикациям транспортного управления Киото и отчётам путешественников. Цены, часы работы окошек и состав ралли меняются — перед выходом стоит свериться с сайтом конкретного места. Координаты на карте схематичны: карта нарисована как чертёж котловины, а не как спутниковый снимок, поэтому улицы и реки на ней условны. Ссылка «Открыть в картах» у каждой точки ведёт на точные координаты.</p>
+  <p class="foot">Сведения собраны 5 сентября 2026 года по официальным страницам храмов и святилищ, публикациям транспортного управления Киото и отчётам путешественников. Цены, часы работы окошек и состав ралли меняются — перед выходом стоит свериться с сайтом конкретного места. Карта — настоящая: подложка OpenStreetMap, спутниковые снимки Esri. Координаты точек проставлены вручную по адресам храмов; окошко с печатью может стоять в стороне от отметки — в карточке написано, где искать. Местоположение показывается прямо в браузере и никуда не передаётся: страница статическая, сервера у неё нет.</p>
 </main>
 
 <script>
@@ -847,251 +970,140 @@ const P = [
  note:"Старейшее сохранившееся здание святилища в Японии, около 1060 года. Через реку от Бёдо-ин, десять минут пешком.",tags:["ЮНЕСКО"]}
 ];
 
-/* ================= география котловины ================= */
-const BOUNDS = {s:34.872, n:35.140, w:135.612, e:135.858};
-const MTN = [
-  /* Хигасияма — восточная гряда */
-  [[35.140,135.858],[35.140,135.812],[35.100,135.806],[35.062,135.802],[35.030,135.798],[35.000,135.792],[34.978,135.797],[34.952,135.808],[34.930,135.822],[34.900,135.832],[34.872,135.846],[34.872,135.858]],
-  /* Китаяма — северная гряда */
-  [[35.140,135.612],[35.140,135.858],[35.104,135.806],[35.090,135.788],[35.074,135.772],[35.066,135.748],[35.062,135.722],[35.068,135.692],[35.078,135.658],[35.090,135.612]],
-  /* Нисияма — западная гряда */
-  [[35.096,135.612],[35.062,135.640],[35.044,135.656],[35.028,135.662],[35.012,135.666],[34.996,135.660],[34.978,135.654],[34.950,135.650],[34.918,135.646],[34.872,135.640],[34.872,135.612]]
-];
-const RIVERS = [
-  {name:"Камо", pts:[[35.092,135.758],[35.070,135.752],[35.050,135.760],[35.036,135.768],[35.030,135.771],[35.012,135.772],[34.998,135.771],[34.985,135.766],[34.966,135.756],[34.940,135.749],[34.916,135.746],[34.897,135.740]], w:2.4, label:[34.972,135.752]},
-  {name:"Такано", pts:[[35.124,135.836],[35.098,135.812],[35.072,135.796],[35.050,135.782],[35.030,135.771]], w:1.7},
-  {name:"Кацура", pts:[[35.048,135.664],[35.030,135.668],[35.013,135.676],[34.996,135.690],[34.976,135.706],[34.950,135.716],[34.920,135.727],[34.897,135.740],[34.882,135.752]], w:2.4, label:[34.996,135.686]},
-  {name:"Удзи", pts:[[34.898,135.836],[34.892,135.812],[34.888,135.792],[34.884,135.768],[34.882,135.752]], w:2.0}
-];
-const RAIL = [
-  [[34.9985,135.858],[34.9930,135.8150],[34.9880,135.7800],[34.9858,135.7588],[34.9800,135.7350],[34.9700,135.7000],[34.9540,135.6650]],
-  [[34.9858,135.7588],[34.9765,135.7735],[34.9670,135.7724],[34.9490,135.7690],[34.9330,135.7690],[34.9270,135.7930],[34.8910,135.8010]],
-  [[34.9858,135.7588],[34.9900,135.7480],[35.0000,135.7420],[35.0110,135.7418],[35.0180,135.7320],[35.0190,135.7000],[35.0186,135.6820],[35.0200,135.6480]],
-  [[35.0620,135.7550],[35.0470,135.7590],[35.0300,135.7595],[35.0110,135.7593],[34.9858,135.7588],[34.9500,135.7530],[34.9330,135.7500]],
-  [[35.0100,135.7180],[35.0140,135.7500],[35.0110,135.7593],[35.0090,135.7730],[35.0110,135.7810],[35.0090,135.7880],[34.9930,135.8150],[34.9270,135.7930]],
-  [[35.0300,135.7727],[35.0180,135.7720],[35.0090,135.7730],[35.0035,135.7720],[34.9960,135.7690],[34.9880,135.7680],[34.9765,135.7735],[34.9670,135.7690],[34.9330,135.7625]],
-  [[35.0037,135.7690],[35.0037,135.7593],[35.0035,135.7460],[35.0037,135.7325],[34.9820,135.7010],[34.9250,135.6900]],
-  [[35.0035,135.7460],[35.0090,135.7180],[35.0152,135.6786]],
-  [[35.0300,135.7727],[35.0530,135.7830],[35.0800,135.7720],[35.1080,135.7660],[35.1157,135.7699]]
-];
-const NS = [135.7320,135.7395,135.7480,135.7590,135.7690,135.7780];
-const EW = [35.0430,35.0295,35.0185,35.0110,35.0037,34.9955,34.9880,34.9765];
-const PARKS = [
-  {n:"Госё", box:[35.0195,135.7565,35.0325,135.7660]},
-  {n:"", box:[35.0122,135.7452,35.0166,135.7532]}
-];
-const LABELS = [
-  {t:"Китаяма", lat:35.104, lon:135.700, s:15, a:"middle"},
-  {t:"Хигасияма", lat:35.052, lon:135.822, s:15, a:"middle"},
-  {t:"Нисияма", lat:34.960, lon:135.646, s:15, a:"middle"},
-  {t:"Курама", lat:35.126, lon:135.766, s:11, a:"middle"},
-  {t:"Охара", lat:35.128, lon:135.836, s:11, a:"middle"},
-  {t:"Такао", lat:35.068, lon:135.664, s:11, a:"middle"},
-  {t:"Арасияма", lat:35.024, lon:135.668, s:11, a:"middle"},
-  {t:"Гион", lat:35.0035, lon:135.7810, s:11, a:"start"},
-  {t:"Вокзал Киото", lat:34.9832, lon:135.7588, s:11, a:"middle"},
-  {t:"Фусими", lat:34.940, lon:135.772, s:11, a:"start"},
-  {t:"Удзи", lat:34.884, lon:135.806, s:11, a:"middle"},
-  {t:"Дайго", lat:34.948, lon:135.830, s:11, a:"start"},
-  {t:"Госё", lat:35.0262, lon:135.7612, s:9.5, a:"middle"},
-  {t:"Нидзё", lat:35.0144, lon:135.7492, s:9.5, a:"middle"}
-];
+/* ================= карта на настоящих тайлах ================= */
+const KYOTO = [35.0116, 135.7681];
+const mapEl = document.getElementById("map");
+const darkMQ = matchMedia("(prefers-color-scheme: dark)");
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ================= проекция ================= */
-const W = 1000;
-const mercY = lat => Math.log(Math.tan(Math.PI/4 + lat*Math.PI/360));
-const myN = mercY(BOUNDS.n), myS = mercY(BOUNDS.s);
-const dLonRad = (BOUNDS.e - BOUNDS.w) * Math.PI/180;
-const H = W * (myN - myS) / dLonRad;
-const px = lon => (lon - BOUNDS.w) / (BOUNDS.e - BOUNDS.w) * W;
-const py = lat => (myN - mercY(lat)) / (myN - myS) * H;
-const pt = (lat,lon) => px(lon).toFixed(1) + "," + py(lat).toFixed(1);
-const poly = a => a.map(p => pt(p[0],p[1])).join(" ");
+const ATTR_OSM = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>';
+const ESRI = n => "https://server.arcgisonline.com/ArcGIS/rest/services/" + n + "/MapServer/tile/{z}/{y}/{x}";
 
-/* ================= отрисовка карты ================= */
-const SVGNS = "http://www.w3.org/2000/svg";
-const map = document.getElementById("map");
-let vbx = 0, vby = 0, vbw = W, vbh = H;
-function fitViewBox(){
-  const r = map.getBoundingClientRect();
-  if (!r.width || !r.height) return;
-  const ar = r.width / r.height;
-  if (ar > W/H){ vbh = H; vbw = H*ar; } else { vbw = W; vbh = W/ar; }
-  vbx = (W - vbw)/2; vby = (H - vbh)/2;
-  map.setAttribute("viewBox", `${vbx.toFixed(1)} ${vby.toFixed(1)} ${vbw.toFixed(1)} ${vbh.toFixed(1)}`);
+const map = L.map(mapEl, {zoomControl:false, minZoom:9, maxZoom:19, zoomSnap:0.5, wheelPxPerZoomLevel:110});
+map.setView(KYOTO, 12);
+
+const ALL_BOUNDS = L.latLngBounds(P.map(p => [p.lat, p.lon]));
+
+function tileFor(kind){
+  if (kind === "sat") return L.layerGroup([
+    L.tileLayer(ESRI("World_Imagery"), {maxZoom:19, attribution:"Снимки: Esri, Maxar, Earthstar Geographics"}),
+    L.tileLayer(ESRI("Reference/World_Boundaries_and_Places"), {maxZoom:19, opacity:0.9})
+  ]);
+  return L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {maxZoom:19, attribution:ATTR_OSM});
 }
-fitViewBox();
-
-function el(tag, attrs, parent){
-  const e = document.createElementNS(SVGNS, tag);
-  for (const k in attrs) e.setAttribute(k, attrs[k]);
-  if (parent) parent.appendChild(e);
-  return e;
+let curBase = "plan", baseTile = null;
+function setBase(kind){
+  if (baseTile) map.removeLayer(baseTile);
+  curBase = kind;
+  baseTile = tileFor(kind).addTo(map);
+  mapEl.classList.toggle("on-sat", kind === "sat");
+  document.querySelectorAll("[data-base]").forEach(b =>
+    b.setAttribute("aria-pressed", b.dataset.base === kind ? "true" : "false"));
 }
-
-const scene = el("g", {id:"scene"}, map);
-const geo   = el("g", {id:"geo"}, scene);
-const gLbl  = el("g", {id:"labels"}, scene);
-const gPin  = el("g", {id:"pins"}, scene);
-
-el("rect", {x:-W,y:-H,width:3*W,height:3*H,fill:"var(--map-bg)"}, geo);
-MTN.forEach((m,i) => el("polygon", {points:poly(m), fill:i===1?"var(--map-mtn-2)":"var(--map-mtn)"}, geo));
-
-/* улицы-сетка старого города */
-const grid = el("g", {stroke:"var(--map-street)","stroke-width":1,fill:"none","vector-effect":"non-scaling-stroke"}, geo);
-NS.forEach(lon => el("line", {x1:px(lon),y1:py(35.049),x2:px(lon),y2:py(34.972)}, grid));
-EW.forEach(lat => el("line", {x1:px(135.724),y1:py(lat),x2:px(135.784),y2:py(lat)}, grid));
-
-PARKS.forEach(p => {
-  const [s,w,n,e] = p.box;
-  el("rect", {x:px(w), y:py(n), width:px(e)-px(w), height:py(s)-py(n), fill:"var(--map-park)"}, geo);
+setBase("plan");
+document.getElementById("baseChips").addEventListener("click", ev => {
+  const b = ev.target.closest("[data-base]"); if (b) setBase(b.dataset.base);
 });
 
-/* железные дороги */
-const rail = el("g", {stroke:"var(--map-rail)","stroke-width":1.2,fill:"none","stroke-dasharray":"5 4","stroke-linecap":"round","stroke-linejoin":"round","vector-effect":"non-scaling-stroke"}, geo);
-RAIL.forEach(r => el("polyline", {points:poly(r)}, rail));
-
-/* реки */
-RIVERS.forEach(r => el("polyline", {
-  points:poly(r.pts), fill:"none", stroke:"var(--map-water)", "stroke-width":r.w,
-  "stroke-linecap":"round", "stroke-linejoin":"round", "vector-effect":"non-scaling-stroke"
-}, geo));
-
-/* подписи мест — не масштабируются вместе с картой */
-const scalables = [];
-LABELS.forEach(L => {
-  const g = el("g", {}, gLbl);
-  const t = el("text", {class:"maplabel","font-size":L.s,"text-anchor":L.a, x:0, y:0}, g);
-  t.textContent = L.t;
-  scalables.push({g, x:px(L.lon), y:py(L.lat)});
-});
-RIVERS.filter(r=>r.label).forEach(r => {
-  const g = el("g", {}, gLbl);
-  const t = el("text", {class:"rivlabel","font-size":11,"text-anchor":"end", x:0, y:0}, g);
-  t.textContent = "р. " + r.name;
-  scalables.push({g, x:px(r.label[1]), y:py(r.label[0])});
-});
-
-/* отметки */
-const COLOR = {goshuin:"var(--shu)", free:"var(--ai)", both:"var(--shu)"};
+/* ================= отметки ================= */
+const pinLayer = L.layerGroup().addTo(map);
 const pins = [];
 P.forEach((p, i) => {
   p.i = i;
-  const g = el("g", {class:"pin", tabindex:"0", role:"button"}, gPin);
-  g.setAttribute("aria-label", p.n);
-  el("circle", {class:"halo", cx:0, cy:0, r:8}, g);
-  if (p.type === "both"){
-    el("path", {d:"M0,-6.2 A6.2,6.2 0 0,0 0,6.2 Z", fill:"var(--shu)", stroke:"var(--map-bg)","stroke-width":1.6}, g);
-    el("path", {class:"core2", d:"M0,-6.2 A6.2,6.2 0 0,1 0,6.2 Z", fill:"var(--ai)", stroke:"var(--map-bg)","stroke-width":1.6}, g);
-    el("circle", {class:"core", cx:0, cy:0, r:6.2, fill:"none", stroke:"var(--map-bg)","stroke-width":1.6}, g);
-  } else {
-    el("circle", {class:"core", cx:0, cy:0, r:6.2, fill:COLOR[p.type]}, g);
-  }
-  const rec = {g, x:px(p.lon), y:py(p.lat), p};
-  pins.push(rec); scalables.push(rec);
-  g.addEventListener("click", () => select(i, true));
-  g.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); select(i, true);} });
+  const m = L.marker([p.lat, p.lon], {
+    title: p.n,
+    alt: p.n,
+    riseOnHover: true,
+    icon: L.divIcon({className:"mkw", html:'<span class="mk t-' + p.type + '"></span>', iconSize:[18,18], iconAnchor:[9,9]})
+  });
+  m.on("click", () => select(i, true));
+  m.bindTooltip(p.n, {direction:"top", offset:[0,-11], className:"mktip", opacity:1});
+  pins.push({m, p, on:false});
 });
 
-/* ================= масштаб и перетаскивание ================= */
-let k = 1, tx = 0, ty = 0;
-const KMIN = 0.85, KMAX = 9;
-function apply(){
-  scene.setAttribute("transform", `translate(${tx.toFixed(2)},${ty.toFixed(2)}) scale(${k.toFixed(4)})`);
-  const inv = (1/k).toFixed(4);
-  for (const s of scalables) s.g.setAttribute("transform", `translate(${s.x.toFixed(1)},${s.y.toFixed(1)}) scale(${inv})`);
+function flyTo(lat, lon, z){
+  const zz = Math.max(map.getZoom(), z || 15);
+  if (reduced) map.setView([lat, lon], zz);
+  else map.flyTo([lat, lon], zz, {duration:0.7});
 }
-function clampT(){
-  const cx = tx + k*W/2, cy = ty + k*H/2;
-  const lo = 0.12, hi = 0.88;
-  const minx = vbx + vbw*lo, maxx = vbx + vbw*hi;
-  const miny = vby + vbh*lo, maxy = vby + vbh*hi;
-  if (cx < minx) tx += minx - cx; else if (cx > maxx) tx += maxx - cx;
-  if (cy < miny) ty += miny - cy; else if (cy > maxy) ty += maxy - cy;
-}
-function zoomAt(cx, cy, nk){
-  nk = Math.max(KMIN, Math.min(KMAX, nk));
-  tx = cx - (cx - tx) * (nk/k);
-  ty = cy - (cy - ty) * (nk/k);
-  k = nk; clampT(); apply();
-}
-function toScene(clientX, clientY){
-  const r = map.getBoundingClientRect();
-  const sc = r.width / vbw;
-  return {x: vbx + (clientX - r.left)/sc, y: vby + (clientY - r.top)/sc};
-}
-map.addEventListener("wheel", ev => {
-  ev.preventDefault();
-  const s = toScene(ev.clientX, ev.clientY);
-  zoomAt(s.x, s.y, k * Math.pow(1.0016, -ev.deltaY));
-}, {passive:false});
 
-const active = new Map();
-let last = null, pinchD = 0;
-map.addEventListener("pointerdown", ev => {
-  map.setPointerCapture(ev.pointerId);
-  active.set(ev.pointerId, {x:ev.clientX, y:ev.clientY});
-  if (active.size === 1){ last = toScene(ev.clientX, ev.clientY); map.classList.add("dragging"); }
-  else if (active.size === 2){ const [a,b] = [...active.values()]; pinchD = Math.hypot(a.x-b.x, a.y-b.y); }
-});
-map.addEventListener("pointermove", ev => {
-  if (!active.has(ev.pointerId)) return;
-  active.set(ev.pointerId, {x:ev.clientX, y:ev.clientY});
-  if (active.size === 2){
-    const [a,b] = [...active.values()];
-    const d = Math.hypot(a.x-b.x, a.y-b.y);
-    if (pinchD > 0){
-      const c = toScene((a.x+b.x)/2, (a.y+b.y)/2);
-      zoomAt(c.x, c.y, k * (d/pinchD));
+/* ================= кнопки карты ================= */
+document.getElementById("zin").onclick  = () => map.zoomIn(1);
+document.getElementById("zout").onclick = () => map.zoomOut(1);
+document.getElementById("reset").onclick = () => map.fitBounds(ALL_BOUNDS, {padding:[36,36]});
+
+/* ================= где я ================= */
+const R = 6371000;
+const rad = d => d * Math.PI / 180;
+function metres(aLat, aLon, bLat, bLon){
+  const dLat = rad(bLat - aLat), dLon = rad(bLon - aLon);
+  const h = Math.sin(dLat/2)**2 + Math.cos(rad(aLat))*Math.cos(rad(bLat))*Math.sin(dLon/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+function fmtDist(m){
+  if (m < 950) return Math.round(m/10)*10 + " м";
+  const km = m/1000;
+  return (km < 10 ? km.toFixed(1).replace(".", ",") : Math.round(km)) + " км";
+}
+let me = null, meMk = null, meRing = null, watchId = 0, firstFix = true;
+const locBtn = document.getElementById("loc");
+const toastEl = document.getElementById("toast");
+let toastT = 0;
+function toast(msg){
+  toastEl.textContent = msg;
+  toastEl.hidden = false;
+  clearTimeout(toastT);
+  toastT = setTimeout(() => { toastEl.hidden = true; }, 6000);
+}
+function locate(){
+  if (me){ map.setView([me.lat, me.lon], Math.max(map.getZoom(), 15)); return; }
+  if (!navigator.geolocation){ toast("Браузер не умеет определять местоположение."); return; }
+  locBtn.classList.add("busy");
+  locBtn.setAttribute("aria-label", "Ищу вас…");
+  if (watchId) navigator.geolocation.clearWatch(watchId);
+  watchId = navigator.geolocation.watchPosition(pos => {
+    const {latitude:lat, longitude:lon, accuracy:acc} = pos.coords;
+    me = {lat, lon, acc};
+    locBtn.classList.remove("busy");
+    locBtn.classList.add("on");
+    locBtn.setAttribute("aria-label", "Вернуться к своему месту");
+    if (!meMk){
+      meMk = L.marker([lat, lon], {
+        icon: L.divIcon({className:"mew", html:'<span class="me"></span>', iconSize:[18,18], iconAnchor:[9,9]}),
+        zIndexOffset: 1000, interactive: false
+      }).addTo(map);
+      meRing = L.circle([lat, lon], {radius:acc, className:"mering", interactive:false}).addTo(map);
+    } else {
+      meMk.setLatLng([lat, lon]);
+      meRing.setLatLng([lat, lon]).setRadius(acc);
     }
-    pinchD = d; return;
-  }
-  if (!last) return;
-  const s = toScene(ev.clientX, ev.clientY);
-  tx += (s.x - last.x) * k; ty += (s.y - last.y) * k;
-  clampT(); apply();
-  last = toScene(ev.clientX, ev.clientY);
-});
-function up(ev){
-  active.delete(ev.pointerId);
-  if (active.size < 2) pinchD = 0;
-  if (active.size === 0){ last = null; map.classList.remove("dragging"); }
+    if (firstFix){
+      firstFix = false;
+      map.setView([lat, lon], Math.max(map.getZoom(), 14));
+      sortMode = "near";
+      document.getElementById("sortRow").hidden = false;
+      setSortChips();
+      toast("Нашёл вас. Список пересобран: ближайшие сверху.");
+      if (cur >= 0) select(cur, true);
+    }
+    render();
+  }, err => {
+    locBtn.classList.remove("busy");
+    locBtn.setAttribute("aria-label", "Показать, где я");
+    toast(err.code === 1
+      ? "Доступ к местоположению закрыт. Разрешите его для этой страницы в настройках браузера."
+      : "Не получилось определить место. На улице и с включённой геолокацией выходит точнее.");
+  }, {enableHighAccuracy:true, timeout:20000, maximumAge:10000});
 }
-map.addEventListener("pointerup", up);
-map.addEventListener("pointercancel", up);
-
-const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-let anim = 0;
-function flyTo(lat, lon, nk){
-  cancelAnimationFrame(anim);
-  const tk = Math.max(KMIN, Math.min(KMAX, nk));
-  const gx = px(lon), gy = py(lat);
-  const dst = {k:tk, tx:(vbx + vbw/2) - gx*tk, ty:(vby + vbh/2) - gy*tk};
-  if (reduced){ k = dst.k; tx = dst.tx; ty = dst.ty; clampT(); apply(); return; }
-  const src = {k, tx, ty}, t0 = performance.now(), dur = 520;
-  (function step(now){
-    const u = Math.min(1, (now - t0)/dur), e = 1 - Math.pow(1-u, 3);
-    k = src.k + (dst.k - src.k)*e;
-    tx = src.tx + (dst.tx - src.tx)*e;
-    ty = src.ty + (dst.ty - src.ty)*e;
-    clampT(); apply();
-    if (u < 1) anim = requestAnimationFrame(step);
-  })(t0);
-}
-const cxv = () => vbx + vbw/2, cyv = () => vby + vbh/2;
-document.getElementById("zin").onclick  = () => zoomAt(cxv(), cyv(), k*1.5);
-document.getElementById("zout").onclick = () => zoomAt(cxv(), cyv(), k/1.5);
-document.getElementById("reset").onclick = () => { k=1; tx=0; ty=0; apply(); };
-let rsz;
-addEventListener("resize", () => { clearTimeout(rsz); rsz = setTimeout(() => { fitViewBox(); clampT(); apply(); }, 120); });
-apply();
+locBtn.onclick = locate;
 
 /* ================= список, фильтры, карточка ================= */
 const listEl  = document.getElementById("list");
 const cardEl  = document.getElementById("card");
 const countEl = document.getElementById("count");
 const qEl     = document.getElementById("q");
-let fType = "all", fArea = "all", fQ = "", cur = -1;
+let fType = "all", fArea = "all", fQ = "", cur = -1, sortMode = "area";
 const plural = (n,a,b,c) => { const m = n % 100, d = n % 10;
   if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; };
 
@@ -1115,6 +1127,15 @@ document.getElementById("typeChips").addEventListener("click", ev => {
 });
 qEl.addEventListener("input", () => { fQ = qEl.value.trim().toLowerCase(); render(); });
 
+const sortChips = document.getElementById("sortChips");
+function setSortChips(){
+  [...sortChips.children].forEach(c => c.setAttribute("aria-pressed", c.dataset.s === sortMode ? "true" : "false"));
+}
+sortChips.addEventListener("click", ev => {
+  const b = ev.target.closest(".chip"); if (!b) return;
+  sortMode = b.dataset.s; setSortChips(); render();
+});
+
 const matchType = p => fType === "all" || p.type === fType || p.type === "both";
 function passes(p){
   if (!matchType(p)) return false;
@@ -1127,6 +1148,26 @@ function passes(p){
 }
 
 function feeLine(p){ return p.type === "free" ? "бесплатно" : p.fee; }
+function distTo(p){ return me ? metres(me.lat, me.lon, p.lat, p.lon) : null; }
+
+function itemNode(p){
+  const b = document.createElement("button");
+  b.className = "item t-" + p.type;
+  b.setAttribute("aria-current", p.i === cur ? "true" : "false");
+  b.innerHTML =
+    '<span class="dot"></span>' +
+    '<span><span class="nm"></span><span class="sub"></span></span>' +
+    '<span class="right"><span class="fee' + (p.type === "free" ? " free" : "") + '"></span><span class="km"></span></span>';
+  b.querySelector(".nm").textContent = p.n;
+  b.querySelector(".sub").innerHTML = '<span class="jp"></span>';
+  b.querySelector(".sub .jp").textContent = p.jp;
+  b.querySelector(".fee").textContent = feeLine(p);
+  const d = distTo(p);
+  if (d !== null) b.querySelector(".km").textContent = fmtDist(d);
+  b.dataset.i = p.i;
+  b.onclick = () => select(p.i, false);
+  return b;
+}
 
 function render(){
   const shown = P.filter(passes);
@@ -1136,7 +1177,9 @@ function render(){
 
   for (const r of pins){
     const on = passes(r.p);
-    r.g.style.display = on ? "" : "none";
+    if (on && !r.on) pinLayer.addLayer(r.m);
+    else if (!on && r.on) pinLayer.removeLayer(r.m);
+    r.on = on;
   }
 
   listEl.textContent = "";
@@ -1147,34 +1190,37 @@ function render(){
     listEl.appendChild(d);
     return;
   }
-  for (const [key, title] of AREAS){
-    const grp = shown.filter(p => p.area === key);
-    if (!grp.length) continue;
+
+  if (sortMode === "near" && me){
     const h = document.createElement("div");
-    h.className = "grp"; h.textContent = title;
+    h.className = "grp"; h.textContent = "Ближайшие к вам";
     listEl.appendChild(h);
-    for (const p of grp){
-      const b = document.createElement("button");
-      b.className = "item t-" + p.type;
-      b.setAttribute("aria-current", p.i === cur ? "true" : "false");
-      b.innerHTML =
-        '<span class="dot"></span>' +
-        '<span><span class="nm"></span><span class="sub"></span></span>' +
-        '<span class="fee' + (p.type === "free" ? " free" : "") + '"></span>';
-      b.querySelector(".nm").textContent = p.n;
-      b.querySelector(".sub").innerHTML = '<span class="jp"></span>';
-      b.querySelector(".sub .jp").textContent = p.jp;
-      b.querySelector(".fee").textContent = feeLine(p);
-      b.onclick = () => select(p.i, false);
-      listEl.appendChild(b);
+    shown.slice().sort((a,b) => distTo(a) - distTo(b)).forEach(p => listEl.appendChild(itemNode(p)));
+  } else {
+    for (const [key, title] of AREAS){
+      const grp = shown.filter(p => p.area === key);
+      if (!grp.length) continue;
+      const h = document.createElement("div");
+      h.className = "grp"; h.textContent = title;
+      listEl.appendChild(h);
+      grp.forEach(p => listEl.appendChild(itemNode(p)));
     }
   }
+}
+
+function clearSel(){
+  cardEl.hidden = true; cur = -1;
+  document.getElementById("mapwrap").classList.remove("card-open");
+  pins.forEach(r => r.m.getElement() && r.m.getElement().querySelector(".mk").classList.remove("sel"));
 }
 
 function select(i, fromMap){
   cur = i;
   const p = P[i];
-  pins.forEach(r => r.g.classList.toggle("sel", r.p.i === i));
+  pins.forEach(r => {
+    const e = r.m.getElement();
+    if (e) e.querySelector(".mk").classList.toggle("sel", r.p.i === i);
+  });
   [...listEl.querySelectorAll(".item")].forEach(b => b.setAttribute("aria-current", "false"));
 
   const tags = [];
@@ -1183,12 +1229,15 @@ function select(i, fromMap){
   if (p.type === "both") tags.push('<span class="badge free">и бесплатный штамп</span>');
   p.tags.forEach(t => tags.push('<span class="badge tag">' + t + '</span>'));
 
+  const d = distTo(p);
+
   cardEl.className = "card t-" + p.type;
   cardEl.innerHTML =
     '<button class="x" aria-label="Закрыть">&times;</button>' +
     '<h3></h3>' +
     '<p class="names"><span class="jp"></span> · <span class="rj"></span> · <span class="ar"></span></p>' +
     '<div class="badges">' + tags.join("") + '</div>' +
+    (d !== null ? '<p class="near">От вас <b class="d-km"></b> по прямой</p>' : '') +
     '<dl class="facts">' +
       '<dt>куда идти</dt><dd class="d-where"></dd>' +
       '<dt>часы</dt><dd class="d-hours"></dd>' +
@@ -1196,7 +1245,10 @@ function select(i, fromMap){
       '<dt>условия</dt><dd class="d-how"></dd>' +
     '</dl>' +
     (p.note ? '<p class="note"></p>' : '') +
-    '<a class="go" target="_blank" rel="noopener">Открыть в картах &rarr;</a>';
+    '<div class="acts">' +
+      '<a class="go" target="_blank" rel="noopener">Открыть в Google Картах &rarr;</a>' +
+      '<a class="go route" target="_blank" rel="noopener">Маршрут пешком &rarr;</a>' +
+    '</div>';
 
   cardEl.querySelector("h3").textContent = p.n;
   cardEl.querySelector(".names .jp").textContent = p.jp;
@@ -1207,25 +1259,31 @@ function select(i, fromMap){
   cardEl.querySelector(".d-entry").textContent = p.entry;
   cardEl.querySelector(".d-how").textContent = p.how;
   if (p.note) cardEl.querySelector(".note").textContent = p.note;
-  const a = cardEl.querySelector(".go");
-  a.href = "https://www.google.com/maps/search/?api=1&query=" + p.lat + "," + p.lon;
-  cardEl.querySelector(".x").onclick = () => { cardEl.hidden = true; cur = -1; pins.forEach(r => r.g.classList.remove("sel")); render(); };
+  if (d !== null) cardEl.querySelector(".d-km").textContent = fmtDist(d);
+  const q = p.lat + "," + p.lon;
+  cardEl.querySelector(".go").href = "https://www.google.com/maps/search/?api=1&query=" + q;
+  cardEl.querySelector(".route").href = "https://www.google.com/maps/dir/?api=1&destination=" + q +
+    "&destination_place_id=&travelmode=walking" + (me ? "&origin=" + me.lat + "," + me.lon : "");
+  cardEl.querySelector(".x").onclick = () => { clearSel(); render(); };
   cardEl.hidden = false;
   cardEl.scrollTop = 0;
+  document.getElementById("mapwrap").classList.add("card-open");
 
-  if (!fromMap) flyTo(p.lat, p.lon, Math.max(k, 3.4));
+  if (!fromMap) flyTo(p.lat, p.lon, 16);
   render();
-  const li = [...listEl.querySelectorAll(".item")].find(b => b.querySelector(".nm").textContent === p.n);
+  const li = listEl.querySelector('.item[data-i="' + i + '"]');
   if (li){ li.setAttribute("aria-current", "true"); if (fromMap) li.scrollIntoView({block:"nearest"}); }
 }
 
 document.addEventListener("keydown", ev => {
-  if (ev.key === "Escape" && !cardEl.hidden){ cardEl.hidden = true; cur = -1; pins.forEach(r => r.g.classList.remove("sel")); render(); }
+  if (ev.key === "Escape" && !cardEl.hidden){ clearSel(); render(); }
 });
 
+setSortChips();
 render();
+map.fitBounds(ALL_BOUNDS, {padding:[36,36]});
 const start = P.findIndex(p => p.n === "Киёмидзу-дэра");
-if (start >= 0) select(start, true);
+if (start >= 0 && innerWidth > 900) select(start, true);
 </script>
 
 </body></html>
