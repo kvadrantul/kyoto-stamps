@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style><title>Печати Киото — карта госюин и бесплатных штампов</title>
-<meta name="description" content="Интерактивная карта: где в Киото ставят печати в блокнот. 71 точка — храмы с рукописными госюин и бесплатные штампы на станциях. Цена, часы окошка, куда идти.">
+<meta name="description" content="Интерактивная карта: где в Киото ставят печати в блокнот. Два разных вида — госюин пишут кистью при вас за 300–500 ¥, памятный штамп вы ставите сами и бесплатно. 71 точка: цена, часы окошка, куда идти.">
 <meta name="theme-color" content="#EFF0EA" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#141613" media="(prefers-color-scheme: dark)">
 <meta property="og:title" content="Печати Киото">
@@ -177,7 +177,7 @@ a{color:var(--shu-ink);text-underline-offset:2px}
   content:"";display:inline-block;width:8px;height:8px;border-radius:50%;
   margin-right:5px;background:var(--shu);
 }
-.chip.c-free::before{background:var(--ai)}
+.chip.c-free::before{background:var(--ai);border-radius:2px}
 .chip.c-goshuin[aria-pressed="true"]::before,.chip.c-free[aria-pressed="true"]::before{background:#fff}
 
 .list{overflow-y:auto;flex:1;min-height:0;padding-bottom:18px;scrollbar-width:thin}
@@ -197,10 +197,13 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 .item:hover{background:var(--raised-2)}
 .item[aria-current="true"]{background:var(--shu-soft)}
 .item .dot{width:9px;height:9px;border-radius:50%;margin-top:7px;background:var(--shu)}
-.item.t-free .dot{background:var(--ai)}
+.item.t-free .dot{background:var(--ai);border-radius:2px}
 .item.t-both .dot{background:linear-gradient(90deg,var(--shu) 50%,var(--ai) 50%)}
 .item .nm{display:block;font-size:15.5px;line-height:1.25;font-weight:500}
 .item .sub{display:block;font-size:13px;color:var(--ink-3);line-height:1.3;margin-top:1px}
+.item .ty{white-space:nowrap}
+.item.t-goshuin .ty,.item.t-both .ty{color:var(--shu)}
+.item.t-free .ty{color:var(--ai)}
 .item .fee{
   font-size:12.5px;color:var(--ink-2);white-space:nowrap;margin-top:2px;
   font-variant-numeric:tabular-nums;
@@ -275,7 +278,7 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 .legend .row{display:flex;align-items:center;gap:7px}
 .legend .sw{width:10px;height:10px;border-radius:50%;flex:none}
 .legend .sm{display:none}
-.sw.g{background:var(--shu)} .sw.f{background:var(--ai)} .sw.b{background:linear-gradient(90deg,var(--shu) 50%,var(--ai) 50%)}
+.sw.g{background:var(--shu)} .sw.f{background:var(--ai);border-radius:2px} .sw.b{background:linear-gradient(90deg,var(--shu) 50%,var(--ai) 50%)}
 .sw.m{background:#1A73E8;box-shadow:0 0 0 1.5px #fff}
 
 /* отметки на карте */
@@ -284,14 +287,14 @@ a{color:var(--shu-ink);text-underline-offset:2px}
   display:block;width:16px;height:16px;margin:1px;border-radius:50%;
   background:var(--shu);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.45);position:relative;
 }
-.mk.t-free{background:var(--ai)}
+.mk.t-free{background:var(--ai);border-radius:3px}          /* штамп — квадратный оттиск */
 .mk.t-both{background:linear-gradient(90deg,var(--shu) 50%,var(--ai) 50%)}
 .mkw:hover .mk{transform:scale(1.15)}
 .mk.sel::after{
   content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--shu);
   animation:ping 1.6s ease-out infinite;
 }
-.mk.t-free.sel::after{border-color:var(--ai)}
+.mk.t-free.sel::after{border-color:var(--ai);border-radius:5px}
 @keyframes ping{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.8);opacity:0}}
 @media (prefers-reduced-motion:reduce){.mk.sel::after{animation:none;opacity:.8;transform:scale(1.6)}}
 .mktip{
@@ -329,6 +332,7 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 .badge.pay{background:var(--shu-soft);color:var(--shu-ink);border-color:color-mix(in srgb,var(--shu) 35%,transparent)}
 .badge.free{background:var(--ai-soft);color:var(--ai);border-color:color-mix(in srgb,var(--ai) 35%,transparent)}
 .badge.tag{background:transparent;color:var(--ink-3);border-color:var(--line)}
+.badge.money{background:var(--raised-2);color:var(--ink-2);border-color:var(--line);font-variant-numeric:tabular-nums}
 .facts{display:grid;grid-template-columns:auto 1fr;gap:7px 12px;font-size:14.5px;margin:0}
 .facts dt{
   font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.06em;
@@ -429,6 +433,21 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 .steps .n{font-family:"Alegreya",Georgia,serif;font-size:19px;color:var(--shu);line-height:1.1}
 .steps b{display:block;font-weight:700;color:var(--ink);font-size:16px}
 .steps span{color:var(--ink-2);font-size:15px}
+.vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:16px 0 4px}
+.vscol{border:1px solid var(--line);border-radius:3px;padding:13px 15px 15px;background:var(--raised)}
+.vscol.g{border-top:3px solid var(--shu)}
+.vscol.f{border-top:3px solid var(--ai)}
+.vshead{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700;color:var(--ink);line-height:1.2}
+.vshead .sw{width:12px;height:12px;border-radius:50%;flex:none}
+.vshead .sw.f{border-radius:2px}   /* штамп и в справке квадратный — как на карте */
+.vsjp{font-size:14px;color:var(--ink-3);margin:2px 0 0 20px}
+.vscol dl{display:grid;grid-template-columns:auto 1fr;gap:7px 12px;margin:12px 0 0;font-size:14.5px}
+.vscol dt{
+  font-family:"Alegreya Sans SC","Alegreya Sans",sans-serif;letter-spacing:.06em;
+  font-size:12.5px;color:var(--ink-3);padding-top:2px;white-space:nowrap;
+}
+.vscol dd{margin:0;color:var(--ink-2)}
+.vscol dd b{color:var(--ink)}
 .rallies{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:16px}
 .rally{background:var(--raised);border:1px solid var(--line);padding:14px 15px 16px;display:flex;flex-direction:column;gap:6px}
 .rally.live{border-color:var(--shu);box-shadow:inset 3px 0 0 var(--shu)}
@@ -543,7 +562,7 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 <div class="app" id="app">
 <header class="top">
   <h1><span class="seal">Печати</span> Киото</h1>
-  <p class="lede">Где в Киото ставят печати в блокнот: рукописные храмовые госюин и бесплатные штампы на станциях и в музеях. У каждой точки — цена, часы и окошко, куда идти. Кнопка <b>&#8853;</b> на карте показывает, где вы, и пересобирает список от ближних к дальним.</p>
+  <p class="lede">На карте <b>две разные вещи</b>. Красный кружок — <b>госюин</b>: печать пишут кистью при вас, в особый блокнот, за 300–500 ¥. Синий квадратик — <b>памятный штамп</b>: резиновый штемпель на вокзале или в музее, ставите сами и бесплатно. У каждой точки — цена, часы окошка и куда идти. Кнопка <b>&#8853;</b> на карте показывает, где вы, и пересобирает список от ближних к дальним.</p>
   <p class="count" id="count"></p>
 </header>
 
@@ -554,8 +573,8 @@ a{color:var(--shu-ink);text-underline-offset:2px}
       <div id="sideChips">
         <div class="chips" id="typeChips" role="group" aria-label="Вид печати">
           <button class="chip" data-f="type" data-v="all" aria-pressed="true">все</button>
-          <button class="chip c-goshuin" data-f="type" data-v="goshuin" aria-pressed="false">госюин<span class="lg"> · платно</span></button>
-          <button class="chip c-free" data-f="type" data-v="free" aria-pressed="false">бесплатно</button>
+          <button class="chip c-goshuin" data-f="type" data-v="goshuin" aria-pressed="false"><span class="lg">пишут </span>от руки<span class="lg"> · госюин, 300–500 ¥</span></button>
+          <button class="chip c-free" data-f="type" data-v="free" aria-pressed="false">ставишь сам<span class="lg"> · штамп, бесплатно</span></button>
         </div>
       </div>
       <div class="chips" id="areaChips" role="group" aria-label="Район"></div>
@@ -574,9 +593,9 @@ a{color:var(--shu-ink);text-underline-offset:2px}
     <div id="map" role="application" aria-label="Карта Киото с отметками мест, где ставят печати"></div>
     <div class="legend">
       <b>что за отметка</b>
-      <div class="row"><span class="sw g"></span><span class="lg">госюин — пишут от руки, платно</span><span class="sm">платно</span></div>
-      <div class="row"><span class="sw f"></span><span class="lg">штамп — ставишь сам, бесплатно</span><span class="sm">бесплатно</span></div>
-      <div class="row"><span class="sw b"></span><span class="lg">есть и то, и другое</span><span class="sm">оба</span></div>
+      <div class="row"><span class="sw g"></span><span class="lg">госюин — пишут кистью при вас, 300–500 ¥</span><span class="sm">от руки</span></div>
+      <div class="row"><span class="sw f"></span><span class="lg">штамп — ставите сами, бесплатно</span><span class="sm">сам</span></div>
+      <div class="row"><span class="sw b"></span><span class="lg">есть и печать, и штамп</span><span class="sm">оба</span></div>
       <div class="row"><span class="sw m"></span>вы</div>
     </div>
     <div class="mapui chipbar" id="mapChips"><span class="mapcount" id="mapCount"></span></div>
@@ -598,12 +617,41 @@ a{color:var(--shu-ink);text-underline-offset:2px}
 
   <main class="guide" id="guide">
   <section>
-    <p class="eyebrow">что вообще собирают</p>
-    <h2>Госюин — не сувенир, а отметка о посещении</h2>
+    <p class="eyebrow">две разные вещи</p>
+    <h2>Печать пишут при вас — штамп вы ставите сами</h2>
     <div class="prose">
-      <p><b>Госюин</b> (御朱印, «печать красной тушью») — запись, которую монах или служитель делает <strong>от руки при вас</strong>: название храма, имя божества или будды, дата вашего прихода, поверх — красный оттиск печати. Пишут только в специальный блокнот-гармошку <b>госюинтё</b> (御朱印帳) и только после того, как вы поклонились в главном зале. Записная книжка, скетчбук или лист бумаги не подойдут — вежливо откажут.</p>
-      <p>Это не автограф и не входной билет. В блокнот с госюин не просят расписаться артистов, его не носят в сумке вместе с едой и не заполняют «по-быстрому, а помолиться потом» — во многих храмах прямо просят сначала пройти к алтарю.</p>
-      <p>Рядом живёт вторая, совсем другая история: <strong>бесплатные памятные штампы</strong> (記念スタンプ／駅スタンプ). Резиновый штемпель и подушечка стоят на столике на вокзале, в музее, у выхода из замка — берёшь и ставишь сам, никто не смотрит. Их собирают в обычный блокнот, и мешать их с госюин в одной книжке не принято.</p>
+      <p>На карте отмечены <strong>оба вида</strong>, и это совсем не одно и то же: разный блокнот, разная цена, разный порядок действий. Различить их видно сразу — <strong>круглая красная</strong> отметка значит «пишут от руки», <strong>квадратная синяя</strong> — «ставите сами». Кнопки над картой переключают между ними.</p>
+    </div>
+    <div class="vs">
+      <div class="vscol g">
+        <p class="vshead"><span class="sw g"></span>Госюин — пишут от руки</p>
+        <p class="vsjp">御朱印 · <b id="cntG"></b></p>
+        <dl>
+          <dt>что это</dt><dd>монах или служитель пишет кистью <b>при вас</b>: название храма, имя божества, дату вашего прихода — и кладёт сверху красный оттиск печати. Каждая своя, двух одинаковых не бывает.</dd>
+          <dt>блокнот</dt><dd>только <b>госюинтё</b> (御朱印帳) — блокнот-гармошка, 1500–3000 ¥, продаётся в самих храмах. В записную книжку или на отдельный лист вежливо откажут.</dd>
+          <dt>цена</dt><dd>300–500 ¥ наличными, мелочью. Карты не принимают.</dd>
+          <dt>сколько ждать</dt><dd>2–5 минут, пока пишут. В Киёмидзу и Фусими Инари в выходные очередь 20–40 минут.</dd>
+          <dt>где искать</dt><dd>окошко нокё-дзё (納経所) или дзюё-дзё (授与所), обычно там же, где амулеты. Закрывается раньше самого храма — как правило в 16:00–17:00.</dd>
+          <dt>порядок</dt><dd>сначала поклон в главном зале, потом окошко. Просить печать «на бегу» не принято.</dd>
+        </dl>
+      </div>
+      <div class="vscol f">
+        <p class="vshead"><span class="sw f"></span>Штамп — ставите сами</p>
+        <p class="vsjp">記念スタンプ／駅スタンプ · <b id="cntF"></b></p>
+        <dl>
+          <dt>что это</dt><dd>резиновый штемпель с чернильной подушечкой стоит на столике: берёте и <b>прикладываете сами</b>, никто не смотрит и ничего не спрашивает.</dd>
+          <dt>блокнот</dt><dd>любой — обычный блокнот, открытка, лист ралли. Именно для этого туристам и продают простые блокноты-«штамп-буки». В госюинтё их ставить не принято: это разные вещи.</dd>
+          <dt>цена</dt><dd>бесплатно. В музее или замке нужен входной билет, но за сам штамп не платят.</dd>
+          <dt>сколько ждать</dt><dd>полминуты, очередей не бывает.</dd>
+          <dt>где искать</dt><dd>вестибюль вокзала у турникетов, зал музея, зал отдыха в замке, выход из главного зала храма.</dd>
+          <dt>порядок</dt><dd>никакого. Обычно рядом лежит пробный листок — попробуйте на нём, чернил бывает слишком много.</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="prose">
+      <p><b id="cntB"></b> — <b>замок Нидзё</b>: там есть и бесплатный штамп, и платный «го-дзёин» — печать замка. Но го-дзёин не госюин: замок не храм, лист печатают заранее и продают готовым, кистью при вас ничего не пишут. На карте такая точка отмечена наполовину красным, наполовину синим.</p>
+      <p>Ещё одна оговорка: если каллиграф занят или святилище стоит без служителя, вместо записи в книжку дают <b>какиоки</b> (書き置き) — заранее написанный лист, который потом вклеивают. Печать настоящая, рукописная, просто написана не при вас.</p>
+      <p>Госюин — не автограф и не входной билет. В такой блокнот не просят расписаться артистов, его не носят в сумке вместе с едой и не заполняют «по-быстрому, а помолиться потом» — во многих храмах прямо просят сначала пройти к алтарю.</p>
     </div>
     <ol class="steps">
       <li><span class="n">1</span><span><b>Купите госюинтё</b>Продаётся почти в каждом крупном храме: 1500–3000 ¥. Красивые — в Киёмидзу-дэра, Ясака, Фусими Инари, Кинкаку-дзи. Первую печать обычно ставят там же, где купили книжку.</span></li>
@@ -661,7 +709,7 @@ a{color:var(--shu-ink);text-underline-offset:2px}
     <div class="dl">
       <div class="dlcard">
         <a class="dlname" href="kyoto-stamps.kml" download>Скачать kyoto-stamps.kml &darr;</a>
-        <span>Для <b>Google Моих карт</b>. Откройте <a href="https://www.google.com/mymaps" target="_blank" rel="noopener">google.com/mymaps</a> → «Создать карту» → «Импорт» → выберите файл. Карта появится в приложении Google Карты: «Сохранённые» → «Карты». Точки лягут двумя слоями: платные госюин и бесплатные штампы.</span>
+        <span>Для <b>Google Моих карт</b>. Откройте <a href="https://www.google.com/mymaps" target="_blank" rel="noopener">google.com/mymaps</a> → «Создать карту» → «Импорт» → выберите файл. Карта появится в приложении Google Карты: «Сохранённые» → «Карты». Точки лягут двумя слоями: госюин (пишут при вас) и памятные штампы (ставите сами).</span>
       </div>
       <div class="dlcard">
         <a class="dlname" href="kyoto-stamps.gpx" download>Скачать kyoto-stamps.gpx &darr;</a>
@@ -865,7 +913,7 @@ const P = [
  note:"Популярно у поклонников аниме и книг про оммёдо — по выходным очередь.",tags:[]},
 
 {n:"Замок Нидзё",jp:"元離宮二条城",rj:"Nijo-jo",lat:35.0142,lon:135.7481,area:"center",type:"both",
- fee:"печать замка 300 ¥ · штамп бесплатно",entry:"вход 1300 ¥ (двор 800 ¥)",hours:"штамп 8:45–16:00, лавка 9:00–17:00",
+ fee:"300 ¥ за лист",paper:"sheet",entry:"вход 1300 ¥ (двор 800 ¥)",hours:"штамп 8:45–16:00, лавка 9:00–17:00",
  where:"Бесплатный штамп «53 Нидзё-дзё» — в большом зале отдыха (дай-кюкэй-дзё). Печать замка (го-дзёин) — в лавке ассоциации туризма там же",
  how:"Это не госюин: замок не храм. Го-дзёин — печатный лист с гербом Токугава, продаётся готовым. Бесплатный штамп входит в набор «100 знаменитых замков Японии».",
  note:"Штамп можно поставить, не покупая билет во дворец: зал отдыха на территории, куда пускают по обычному входному.",tags:["100 замков"]},
@@ -1350,6 +1398,13 @@ function passes(p){
 }
 
 function feeLine(p){ return p.type === "free" ? "бесплатно" : p.fee; }
+/* короткое имя вида — в строке списка; полное объяснение — в справке */
+const TYPE_SHORT = {goshuin:"пишут от руки", free:"ставите сами", both:"лист + штамп"};
+const BOOK = {
+  goshuin:"нужен госюинтё — блокнот-гармошка для рукописных печатей, 1500–3000 ¥, продаётся в храмах",
+  free:"любой блокнот или открытка; в госюинтё памятные штампы не ставят",
+  both:"печать замка дают отдельным листом, штамп ставьте в обычный блокнот"
+};
 function distTo(p){ return me ? metres(me.lat, me.lon, p.lat, p.lon) : null; }
 
 function itemNode(p){
@@ -1361,8 +1416,9 @@ function itemNode(p){
     '<span><span class="nm"></span><span class="sub"></span></span>' +
     '<span class="right"><span class="fee' + (p.type === "free" ? " free" : "") + '"></span><span class="km"></span></span>';
   b.querySelector(".nm").textContent = p.n;
-  b.querySelector(".sub").innerHTML = '<span class="jp"></span>';
+  b.querySelector(".sub").innerHTML = '<span class="jp"></span> · <span class="ty"></span>';
   b.querySelector(".sub .jp").textContent = p.jp;
+  b.querySelector(".sub .ty").textContent = TYPE_SHORT[p.type];
   b.querySelector(".fee").textContent = feeLine(p);
   const d = distTo(p);
   if (d !== null) b.querySelector(".km").textContent = fmtDist(d);
@@ -1427,10 +1483,18 @@ function select(i, fromMap){
   });
   [...listEl.querySelectorAll(".item")].forEach(b => b.setAttribute("aria-current", "false"));
 
+  /* первой меткой — вид печати, второй цена: человек спрашивает «пишут или ставлю сам»,
+     а не «сколько стоит» */
   const tags = [];
-  if (p.type === "free") tags.push('<span class="badge free">бесплатно · сам</span>');
-  else tags.push('<span class="badge pay">' + p.fee + '</span>');
-  if (p.type === "both") tags.push('<span class="badge free">и бесплатный штамп</span>');
+  if (p.type === "free"){
+    tags.push('<span class="badge free">штамп · ставите сами</span>');
+    tags.push('<span class="badge money">бесплатно</span>');
+  } else {
+    tags.push('<span class="badge pay">' +
+      (p.paper === "sheet" ? "печатный лист · дают готовым" : "госюин · пишут при вас") + '</span>');
+    tags.push('<span class="badge money">' + p.fee + '</span>');
+    if (p.type === "both") tags.push('<span class="badge free">+ штамп · ставите сами, бесплатно</span>');
+  }
   p.tags.forEach(t => tags.push('<span class="badge tag">' + t + '</span>'));
 
   const d = distTo(p);
@@ -1448,6 +1512,7 @@ function select(i, fromMap){
       '<dt>часы</dt><dd class="d-hours"></dd>' +
       '<dt>вход</dt><dd class="d-entry"></dd>' +
       '<dt>условия</dt><dd class="d-how"></dd>' +
+      '<dt>блокнот</dt><dd class="d-book"></dd>' +
     '</dl>' +
     (p.note ? '<p class="note"></p>' : '') +
     '<div class="acts">' +
@@ -1463,6 +1528,7 @@ function select(i, fromMap){
   cardEl.querySelector(".d-hours").textContent = p.hours;
   cardEl.querySelector(".d-entry").textContent = p.entry;
   cardEl.querySelector(".d-how").textContent = p.how;
+  cardEl.querySelector(".d-book").textContent = BOOK[p.type];
   if (p.note) cardEl.querySelector(".note").textContent = p.note;
   if (d !== null) cardEl.querySelector(".d-km").textContent = fmtDist(d);
   const q = p.lat + "," + p.lon;
@@ -1656,6 +1722,16 @@ addEventListener("orientationchange", () => setTimeout(setVH, 260));
 addEventListener("pageshow", applyVH);
 document.addEventListener("visibilitychange", () => { if (!document.hidden) applyVH(); });
 applyVH();
+
+/* сколько каких — считаем по самим точкам, чтобы число в справке не разошлось с картой */
+(() => {
+  const cnt = t => P.filter(p => p.type === t).length;
+  const nn = (v, a, b, c) => v + " " + plural(v, a, b, c);
+  document.getElementById("cntG").textContent = nn(cnt("goshuin") + cnt("both"), "точка", "точки", "точек") + " на карте";
+  document.getElementById("cntF").textContent = nn(cnt("free") + cnt("both"), "точка", "точки", "точек") + " на карте";
+  const b = cnt("both");
+  document.getElementById("cntB").textContent = b === 1 ? "Одна точка даёт и то, и другое" : nn(b, "точка даёт", "точки дают", "точек дают") + " и то, и другое";
+})();
 
 /* ================= запуск ================= */
 setSortChips();

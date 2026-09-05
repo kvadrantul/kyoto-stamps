@@ -4,7 +4,7 @@
    открывались без интернета. Номер версии менять при правке этого файла. */
 "use strict";
 
-const V     = "kyoto-2026-09-05";
+const V     = "kyoto-2026-09-05b";
 const SHELL = V + "-shell";
 const TILES = V + "-tiles";
 const TILE_LIMIT = 1200;          // примерно 40–60 МБ: город целиком на средних приближениях
