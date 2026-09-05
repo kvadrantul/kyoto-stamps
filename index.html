@@ -1263,7 +1263,7 @@ function select(i, fromMap){
   const q = p.lat + "," + p.lon;
   cardEl.querySelector(".go").href = "https://www.google.com/maps/search/?api=1&query=" + q;
   cardEl.querySelector(".route").href = "https://www.google.com/maps/dir/?api=1&destination=" + q +
-    "&destination_place_id=&travelmode=walking" + (me ? "&origin=" + me.lat + "," + me.lon : "");
+    "&travelmode=walking" + (me ? "&origin=" + me.lat + "," + me.lon : "");
   cardEl.querySelector(".x").onclick = () => { clearSel(); render(); };
   cardEl.hidden = false;
   cardEl.scrollTop = 0;
